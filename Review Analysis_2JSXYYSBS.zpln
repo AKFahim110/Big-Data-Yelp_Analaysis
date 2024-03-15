@@ -1,0 +1,508 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%pyspark\r\nfrom pyspark.sql import HiveContext\r\n\r\n# Create a HiveContext\r\nhc = HiveContext(sc)\r\n\r\n# Set the database name\r\n\r\n# Execute SQL query to count the yearly number of reviews\r\nresult = hc.sql(f\"\"\"\r\n    SELECT YEAR(rev_date) AS year, COUNT(*) AS review_count\r\n    FROM review\r\n    GROUP BY YEAR(rev_date)\r\n    ORDER BY year\r\n\"\"\")\r\n\r\n# Show the result\r\nz.show(result)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T11:12:54+0800",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "stackedAreaChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "year": "string",
+                      "review_count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "year",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "review_count",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "year\treview_count\n2005\t854\n2006\t3853\n2007\t15363\n2008\t48226\n2009\t74387\n2010\t138587\n2011\t230813\n2012\t286570\n2013\t383950\n2014\t522275\n2015\t688415\n2016\t758882\n2017\t820048\n2018\t906362\n2019\t907284\n2020\t554557\n2021\t618189\n2022\t31665\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:25940"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383053126_1225683058",
+      "id": "paragraph_1710339355351_144142341",
+      "dateCreated": "2024-03-14T10:24:13+0800",
+      "dateStarted": "2024-03-14T11:08:22+0800",
+      "dateFinished": "2024-03-14T11:10:26+0800",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:25667"
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql import HiveContext\n\n# Create a HiveContext\nhc = HiveContext(sc)\n\n\n# Execute SQL query to summarize the count of helpful, funny, and cool reviews each year\nresult = hc.sql(f\"\"\"\n    SELECT \n        YEAR(rev_date) AS year, \n        COUNT(*) AS total_reviews,\n        SUM(rev_useful) AS total_helpful_reviews,\n        SUM(rev_funny) AS total_funny_reviews,\n        SUM(rev_cool) AS total_cool_reviews\n    FROM review\n    GROUP BY YEAR(rev_date)\n    ORDER BY year\n\"\"\")\n\n# Show the result\nz.show(result)\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T11:13:09+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "year": "string",
+                      "total_reviews": "string",
+                      "total_helpful_reviews": "string",
+                      "total_funny_reviews": "string",
+                      "total_cool_reviews": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "year\ttotal_reviews\ttotal_helpful_reviews\ttotal_funny_reviews\ttotal_cool_reviews\n2005\t854\t967\t415\t502\n2006\t3853\t6331\t2661\t3553\n2007\t15363\t30013\t11378\t18423\n2008\t48226\t115707\t49281\t73070\n2009\t74387\t154609\t67795\t84198\n2010\t138587\t255340\t102694\t110642\n2011\t230813\t388054\t133993\t146496\n2012\t286570\t470101\t140431\t154390\n2013\t383950\t608903\t170894\t184860\n2014\t522275\t751393\t202865\t235002\n2015\t688415\t879629\t242321\t315264\n2016\t758882\t892662\t237509\t353781\n2017\t820048\t848693\t223733\t350207\n2018\t906362\t907978\t211725\t415569\n2019\t907284\t864812\t207964\t426637\n2020\t554557\t554763\t138405\t296789\n2021\t618189\t530660\t133343\t301697\n2022\t31665\t20133\t5336\t14396\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:26038"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383053127_1332841461",
+      "id": "paragraph_1710339364385_1233321443",
+      "dateCreated": "2024-03-14T10:24:13+0800",
+      "dateStarted": "2024-03-14T11:10:51+0800",
+      "dateFinished": "2024-03-14T11:13:08+0800",
+      "status": "FINISHED",
+      "$$hashKey": "object:25668"
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql import HiveContext\n\n# Create a HiveContext\nhc = HiveContext(sc)\n\n\n# Execute SQL query to create a ranking of users based on their total reviews each year\nresult = hc.sql(f\"\"\"\n    SELECT \n        year,\n        rev_user_id,\n        total_reviews,\n        RANK() OVER (PARTITION BY year ORDER BY total_reviews DESC) AS user_rank\n    FROM (\n        SELECT \n            YEAR(rev_date) AS year,\n            rev_user_id,\n            COUNT(*) AS total_reviews\n        FROM review\n        GROUP BY YEAR(rev_date), rev_user_id\n    ) ranked_reviews\n    ORDER BY year, user_rank\n\"\"\")\n\n# Show the result\nz.show(result)\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T16:51:50+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "year": "string",
+                      "rev_user_id": "string",
+                      "total_reviews": "string",
+                      "user_rank": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "year\trev_user_id\ttotal_reviews\tuser_rank\n2005\tn-lBS02-3yvlY5Q91mmwDA\t171\t1\n2005\t3MYdpmHeNwC6FquRWi3YOg\t60\t2\n2005\tiUeZhkI0OK0BisakOkb3pQ\t51\t3\n2005\t58yhbFfNHjULDZx0FD-Dvw\t38\t4\n2005\t_BHTC7nyCBoZcfiiD5cOXg\t37\t5\n2005\tjTXj5uf5ER5siDnQK_y4aA\t24\t6\n2005\t3xX-Et9I4Bi4wdRPWJkAFg\t19\t7\n2005\t-qoyKSF2G3PkR_7XNoJfpQ\t18\t8\n2005\tDOFamdMaC_hjn9zg3Gs-0w\t16\t9\n2005\tPO-U11FmTDiqCEqtilFjVQ\t15\t10\n2005\tH4JNrBAoyCk_ZMZWbAf8OA\t14\t11\n2005\tX1VV7rNFaMPDIBE9PVF4tw\t13\t12\n2005\tAuXICYKDCopDrvjy72UVfw\t12\t13\n2005\tqG_bVdazAjjAO1l94gqHAg\t11\t14\n2005\tBI4lPhrUpmEySIJUywjIjQ\t11\t14\n2005\tc8qFkI_VusWo0xZvkjfBWQ\t11\t14\n2005\tF4cbJPyoF1nd3S7Rqz72vw\t11\t14\n2005\t3W-lOOaIVQZONZP83kab6g\t10\t18\n2005\t_cz2O9JukT1I2GuYVAA5Zg\t9\t19\n2005\t3zBJUlWtPNoZ0uN83ODbyg\t9\t19\n2005\t1w5bmM1qsFdQ6NbAU6ZDjQ\t9\t19\n2005\tuSxeEUPMW1nUJr-5jHYt6Q\t9\t19\n2005\t98pdN0Hn3Vx_qBlv2SMuyw\t9\t19\n2005\tZftKc54UnKJSbuzyEg4SjA\t9\t19\n2005\twhfjd0gIdtPXLTZKmNYqZQ\t7\t25\n2005\tkQX4IZc95PkbkMcS9UbYOQ\t7\t25\n2005\t5mHprbXJYoz-7ACL-xL2eA\t7\t25\n2005\t4Xi2i_i1RzKkoJ41_1JHig\t7\t25\n2005\t9Z2UEd_f6eC17YxifpWfMw\t7\t25\n2005\tk2zuwaAne-FhHd8M6bXnyQ\t7\t25\n2005\tCrJlQ1NYEIfmMz5RuUhMvA\t7\t25\n2005\tXCsZ3hWa_6oP1WkWvK7pmg\t7\t25\n2005\tRywiEGRkea2j9IY7juD24w\t6\t33\n2005\tnkN_do3fJ9xekchVC-v68A\t6\t33\n2005\t0FbtB0ajpk8VZSVpC6KjGw\t6\t33\n2005\tq_QQ5kBBwlCcbL1s4NVK3g\t6\t33\n2005\tgjfcfzrYZ0O1xINHtnQKiA\t6\t33\n2005\tGXn4ZsasLKh0qZ5g3nIqcQ\t6\t33\n2005\tO-syY_2E82grwoSebsDcvQ\t6\t33\n2005\tb7ceiS47nxb4p92JAR8iqw\t6\t33\n2005\tHc5Q5rmByOU6gdGkr8TLBg\t5\t41\n2005\tlZsusXJjzStoi3vQmqzoMg\t5\t41\n2005\tNxcJCKeTLNVl-xRP7rpDhw\t4\t43\n2005\t-2BsDZWzob5Q1ZGHcDJ6gw\t4\t43\n2005\tTZ53SO335VUAeUt14E0eGQ\t4\t43\n2005\txPE3z3YRe2CWKyYjjICneQ\t4\t43\n2005\tBf87HcPERF9yiSjb2tQBqw\t4\t43\n2005\tiL-5xEeaQWpESDgKdl-Krw\t4\t43\n2005\tZsq74nsRcudX1LC6yv8JVQ\t3\t49\n2005\tORkSoQaD0jywIA4fgvvszg\t3\t49\n2005\tVRNF7v9PRqnfU3XpNmRxpQ\t3\t49\n2005\ty8lz_6KWGOQ9jcTyIdwTLQ\t3\t49\n2005\tTDXV6AC5PYOZEyN9eeODfA\t3\t49\n2005\tXj0O2l0bp633ebmG468aZw\t3\t49\n2005\tqEYG5IE5dTekjIhdoV31bQ\t3\t49\n2005\tssXAz7RahuYNDx7FeRe4Aw\t3\t49\n2005\tUZ6YOaTiZ1lTZWKASIkVuA\t3\t49\n2005\tM4CiAGc2PePKMoAaMDfevw\t3\t49\n2005\tX0q4bFpolUwr_MOKEURbHg\t2\t59\n2005\tHhwPTD8_6QmRbRfWvImwuQ\t2\t59\n2005\tmsBFTEQdSkj_Vc_VjXkTiw\t2\t59\n2005\tFYXBmAOQ6WZEV3NbnRKWFA\t2\t59\n2005\t4nRS6b_-mZCQT8Q6wGOG7A\t2\t59\n2005\tptLc4l0wjx_q5OrOjSAhog\t2\t59\n2005\tB6FbaEEn5Uh4kEqv4kUdgA\t2\t59\n2005\tx1fQVvSceD1q7Q11O24fBA\t2\t59\n2005\tbA6sFAZTIc5ddwpnB_WJUw\t2\t59\n2005\t5F_ASUSCHFf3YotkKioZ5w\t2\t59\n2005\tK-PtK3gDicUeLXYoJmDKWw\t2\t59\n2005\tk0a5WZZ2bUmM6TkNJApo9g\t2\t59\n2005\t8nmTBwsCkwCMjp4qmDJmPA\t2\t59\n2005\t6VWXDm7k3-iPfm0cArdRdA\t2\t59\n2005\tGR1A-sSEgU64aU30FWJhew\t2\t59\n2005\tzg23ChWAll3vAo5OGVRPyA\t2\t59\n2005\tzejhY7mSVWETy51MUpLJ1g\t2\t59\n2005\t56vERWd2VPTfjytCQlSc6g\t2\t59\n2005\tclFehAg0EJkBuTuOb5exKw\t2\t59\n2005\ty6-ONuzNIxAfsgfeT53_sA\t2\t59\n2005\tgZ-CewXerXlytUGV-4nFRA\t2\t59\n2005\teL9CR1oxghmW8MyP5duxbw\t2\t59\n2005\tLFLpi-FfgDW4zpcdz3hfSQ\t1\t81\n2005\t4Kko5nTAOPG0z_eccm35uQ\t1\t81\n2005\t6-2zjWNQw117-ASTuGun4Q\t1\t81\n2005\tSu5aBOYKcRnprCSc6pW1iw\t1\t81\n2005\tExI15M-oXjHcF42-G1xv9w\t1\t81\n2005\tcG5l8teICW5NRtRJ0GpMww\t1\t81\n2005\t-8PTQX7URNvPZsNSPS9bNw\t1\t81\n2005\t0MFR6Su_osQ2h8mkNu4sPg\t1\t81\n2005\tje5k8a3qIOM0VJE5MaxsfQ\t1\t81\n2005\t7pmlFlxzve-GSJXF3UL0Tg\t1\t81\n2005\t5bcULvg_jQxT8pnA3iFUMg\t1\t81\n2005\tip9RhUfCdeIaiXjHjtIMyg\t1\t81\n2005\tXRYdDW2W0jN3S5ZDt6v1qA\t1\t81\n2005\tserHggq-_EzRisiggeEWOw\t1\t81\n2005\tV1pxG6r8_zfkSpLnF7_GhA\t1\t81\n2005\tW4Ez5lpm377893t1XhLquw\t1\t81\n2005\tuZmbU9pjZxCKTnxvR-PUrw\t1\t81\n2005\tW7l29DDa3d3uqPE1f68JGQ\t1\t81\n2005\tEU2V6NOtkDkMtbIJEeEjzw\t1\t81\n2005\t6_OALsI2elnpdUgToWunAw\t1\t81\n2005\tfFGPBtsutYpn3A155Sf75Q\t1\t81\n2005\t6KLIUutWDNTmZ69Gr9UyMg\t1\t81\n2005\tTo7EBxWC-Yz011V2-tdTvA\t1\t81\n2005\trEfGTtQXrFavj2bqYT9pBA\t1\t81\n2005\tnzsv-p1O8gCfP3XijfQrIw\t1\t81\n2005\tL5aqVaJjOksmfOUm8NZcMQ\t1\t81\n2005\tLZkEU9n-0XDagWrPkPzIwA\t1\t81\n2005\trMg9pY7ct7WQVwElWjlSJw\t1\t81\n2005\t1xUMzfuBgoHvMEq382WVgQ\t1\t81\n2005\t8-lLoii2bEEB_IDJlryyDw\t1\t81\n2005\tgjhzKWsqCIrpEd9pevbKZw\t1\t81\n2005\t-y19GF01caWsYsJTDrf11w\t1\t81\n2005\tKKOM5feU4TzZmUEY24y02Q\t1\t81\n2005\taIk07jxkia9izLMKRbaHHw\t1\t81\n2005\tRn2WEohbL7re6UWt0FETzw\t1\t81\n2005\t23J4vG9_xxxdnmi8CBX7Ng\t1\t81\n2005\t0iXsfZQ8m7melVL8AtkUlg\t1\t81\n2005\tARCr4CO4hHfhhTBEBHiaHw\t1\t81\n2005\tCMBYyVy2Rwb_saUkY5kZaQ\t1\t81\n2005\tfMogiUCHUzyAzRq_OJSEwA\t1\t81\n2005\tlb1dUTdCbpXeSYEOYq5Gsg\t1\t81\n2005\tctwwsl5_DSCzwPxtjzdl2A\t1\t81\n2005\tvetI1F4btXdQAe5G2A2ciA\t1\t81\n2005\t64o6vJrByaGTStMvvU45JQ\t1\t81\n2005\ttCqyfFp9aPv3KuLwRnATrg\t1\t81\n2005\taXd12Hf_QjEapYOgthah5Q\t1\t81\n2006\tgfQqQYI5_hCAGEHlHXIz2Q\t137\t1\n2006\tTDXV6AC5PYOZEyN9eeODfA\t107\t2\n2006\tnnImk681KaRqUVHlSfZjGQ\t78\t3\n2006\t3xX-Et9I4Bi4wdRPWJkAFg\t72\t4\n2006\ttiLm3eFfpxhwV6O9DEaneQ\t61\t5\n2006\tFfa1cXIvFAy8H1sorICaiQ\t50\t6\n2006\tfnBAgDX4D9mNgQZsjFCoog\t48\t7\n2006\t6OV_PFTl9RW2FmYQoOsuRQ\t46\t8\n2006\t_BHTC7nyCBoZcfiiD5cOXg\t45\t9\n2006\tRBXVFcXR3IjP0CYgmkSmtg\t42\t10\n2006\tmZokz37TaR5jFgMrx4WyFw\t41\t11\n2006\t4PE0tDvV9Lo8VW8kDW1SFQ\t41\t11\n2006\t3MYdpmHeNwC6FquRWi3YOg\t40\t13\n2006\tfa3P8dibTRU8QG-XwVMigw\t36\t14\n2006\tT_4pBqf2C6JxLoBJAn2h0A\t35\t15\n2006\ticdFHRhFi4Lb0JmxC6Un0Q\t33\t16\n2006\tjTXj5uf5ER5siDnQK_y4aA\t31\t17\n2006\tn-lBS02-3yvlY5Q91mmwDA\t28\t18\n2006\tQcPN-Dee_dU2IWno-f2oYA\t28\t18\n2006\t26YpEJpa4uwJ60ezG9MIfQ\t27\t20\n2006\t3W-lOOaIVQZONZP83kab6g\t26\t21\n2006\t2OLohmwFrl8ru4w1mUXtyw\t26\t21\n2006\tHVk4LFXU_R6ShQr1bT2TKQ\t24\t23\n2006\tRT8Y7PxPzC7DuAjAquNjng\t23\t24\n2006\t6eVhsPPKYF_zImkDSVqjhw\t23\t24\n2006\tUzUnpnlH1n346MDgaFMOmw\t23\t24\n2006\tFZQXGfmkMASFWq3JnuQZqg\t23\t24\n2006\tCrJlQ1NYEIfmMz5RuUhMvA\t21\t28\n2006\tBlLJmseYoL6iRKTfty5sTw\t21\t28\n2006\t2l0O1EI1m0yWjFo2zSt71w\t21\t28\n2006\tPifSfXxEUKOoYg-gJ4cjUQ\t21\t28\n2006\tCt456aEICzDfn03MHZCzsw\t21\t28\n2006\tqQecSd0lynfB4g-LPa9JCw\t20\t33\n2006\tmLwKdFW96yof7-6EVgLXhA\t20\t33\n2006\tyeGIAyHixJrIe-zmXiePWQ\t19\t35\n2006\tLyXvIE71cMeiBaPZI_Yq2w\t19\t35\n2006\tgZcxXnogU1O-gPTbqqtMYw\t19\t35\n2006\tkX7v9yOAs-BZ86zAldZC9Q\t18\t38\n2006\tKeuhteHe76DxDlXnkWoDwA\t17\t39\n2006\tRScVO94HmC0Bfe48ernf2w\t17\t39\n2006\tjZfIQN8ivTQFdzYRtMmChQ\t17\t39\n2006\tzg23ChWAll3vAo5OGVRPyA\t17\t39\n2006\tAuXICYKDCopDrvjy72UVfw\t17\t39\n2006\thuHOgjAAeUr6zoV-dcbI9Q\t17\t39\n2006\tmBV3IenBC4n_jbfu3GTHvA\t16\t45\n2006\t7rK9GO6D00V6Fzvh7oUQWw\t16\t45\n2006\tHQG3no8C5U31z-k1MaYCqQ\t16\t45\n2006\tje5k8a3qIOM0VJE5MaxsfQ\t16\t45\n2006\tMOPr2tL7UYZxLI9SIatneQ\t16\t45\n2006\tkORGcgi0Iw2RG8gJl84MVA\t16\t45\n2006\t0ZdhN614Q3cvy7hlXDoQqg\t16\t45\n2006\tFBRjdSizGuMyxQuSSwzarg\t15\t52\n2006\tEQAghmtWV39rcoOu4Z6Zqw\t15\t52\n2006\tOGa2q6LvuQLYFUG_RCcALw\t14\t54\n2006\tG8ceJ1sl4bTa3HpHH30Tsw\t14\t54\n2006\tO1U20igtZ9ROL9WxHq3eng\t14\t54\n2006\t37xj6W1Tq_Pwx-0Az5n6ZQ\t14\t54\n2006\tTvG6JUla4qa1fJlh782Viw\t14\t54\n2006\tE5MwIwYX-bJnslhVMPko3w\t14\t54\n2006\tiScFhlyUh_5UJVvcJA0PHA\t13\t60\n2006\t4gs09o630_X9CdmdZUUWMA\t13\t60\n2006\tuU-Rk1sj478gPh6Kug1wSw\t12\t62\n2006\tTMLVzNYs-zwwREudyvI08A\t12\t62\n2006\tnyeCMGiGArJze8TdAyax0g\t12\t62\n2006\tNjRf_3nrhBvn8ZxRWtLAPQ\t12\t62\n2006\tz-KkYvu4klkBOSUfgKoTJQ\t12\t62\n2006\txfe25SzgOvx5BUlXVg4YWg\t12\t62\n2006\tHDiU7ZlOUaNOoflQb1sEtA\t12\t62\n2006\t7xp_8X8QRAgHFZGs8M7FCw\t12\t62\n2006\tPQMja5xAcSRNUAUJjkQKrA\t12\t62\n2006\tygX0CXmBI22wI4WslUkP-A\t12\t62\n2006\t4XpPfy4-ic1tb6Yuh-BdRg\t12\t62\n2006\tmxBmOz00l-6CBebMg5G91g\t11\t73\n2006\t8Lc3-TTHjExd79GSQIHnAw\t11\t73\n2006\tl_eOaEgbOxmy3K1Nbr3Apw\t11\t73\n2006\t3408fXDm6Mu4bVdLOo4F2Q\t11\t73\n2006\t8GsgN-bxWdk0gHSSNGtHyg\t11\t73\n2006\tKBxUsSPua9RrP6K-9wFsuA\t11\t73\n2006\tGj-hR5PSqQnq6f9sxYSImA\t10\t79\n2006\tddc5DGUyRy3DA9KRlOyQSA\t10\t79\n2006\tfJF2xokaIgQsmNLuav5etQ\t10\t79\n2006\txvaeF_Daee7vhOSk5G9g_w\t10\t79\n2006\tzAksIuco3CDwYGQiUg2wCA\t10\t79\n2006\t2iSBJHVMNsolJ3AH1g_D7A\t10\t79\n2006\tIgYtTVyr-XOlyyMLMx9yXA\t10\t79\n2006\tCAlzkAY3BUundz-c7DCMeQ\t10\t79\n2006\tLVcbO8YWYz9WjHLBXN6jpQ\t10\t79\n2006\tA94ivfwchCxwN4rcdoeuJQ\t9\t88\n2006\tsZUC9GbwvDHWrHl0D_d2dA\t9\t88\n2006\tQBHfjwsZF0XUJBqdz_547Q\t9\t88\n2006\t5-giAfQshjM4ASeD-5TI2w\t9\t88\n2006\tyOzSBn1yMyeCE67hfBYNsQ\t9\t88\n2006\tlKHah9HQuDFQwhBPUget4g\t9\t88\n2006\tTQXtrSpsUyvHMriX8hvNWQ\t9\t88\n2006\trIlkPMpY703msPDdoxuyog\t9\t88\n2006\tLT27AG_SfvJZjy1nda4vfw\t9\t88\n2006\t0vdXVH2HlQUxE9FFFIE5DA\t9\t88\n2006\tX5EAMkKCHTpmso9ILIFRUg\t8\t98\n2006\tqjkOmSEFFEeWVTtsIl0aAw\t8\t98\n2006\tCXCvnCfAvkLpFRiqsp26gw\t8\t98\n2006\tcOSEvHWqoT5B4d3RcZthyw\t8\t98\n2006\tYp4xG6g0Hg9OliyovpTrqA\t8\t98\n2006\ttvZKPah2u9G9dFBg5GT0eg\t8\t98\n2006\tMh7oEIX2oHYAXm-HAxlfWw\t8\t98\n2006\tOF1Dwu3fWeyNzX2ehlyM3A\t8\t98\n2006\tZvq_R3uYTGkkx1ehy1T8Gw\t8\t98\n2006\tEnNSt5pVMdXeTFhWwp9PrA\t8\t98\n2006\t6G4Ho6jBuaSmKAOZui8zjg\t8\t98\n2006\t16bmaGpCAqZB0PzjLTADWA\t8\t98\n2006\tOHrl1xyCGSFp5lGSP2-6kg\t8\t98\n2006\tXuNDpSsabopmPBtUf45VFQ\t7\t111\n2006\tXsLV5Ru1Y3uzwMK7ZhTDhA\t7\t111\n2006\tD5pHA4ImB6AFcDpi_-fHdQ\t7\t111\n2006\t_vN1zUgCxvfVFabQJw5JvA\t7\t111\n2006\tRlI8vfhbYeUahO875DBFIw\t7\t111\n2006\tdvJCIib1sZj6USjhBuvz_A\t7\t111\n2006\tg4CTormL_kRexS-y2a5k4g\t7\t111\n2006\tVdy219QdKTKmzTSy12FVnw\t7\t111\n2006\t-VsjDBOjtOQnM9tbjNDErQ\t7\t111\n2006\tfdwVdy6TuY1kjYeEPMZKVw\t7\t111\n2006\txtZMctl7AQNspIL_SF3guA\t7\t111\n2006\taYDKuxI66I_eUB3-mWrjnw\t7\t111\n2006\th-NFrVwhhCvxdle_3pBwiQ\t7\t111\n2006\tGitE04dW0jYxH5LplUTDBA\t7\t111\n2006\t4ze88V1brgv5slnpZ1Q4gw\t7\t111\n2006\trdSJ_jlij_2x5glkrEEZxg\t7\t111\n2006\tBI4lPhrUpmEySIJUywjIjQ\t7\t111\n2006\tx_q4Cx-pzhNi1iwCDUizHw\t6\t128\n2006\t1xvmDofA0MvWDSD2hJAvyw\t6\t128\n2006\tiw_6JAAw9FAIv2YkbLcMFA\t6\t128\n2006\tB4cJvWuf59j7XlTdexnVZw\t6\t128\n2006\tJ_OSEUmc7C6yK0rLVxOH4g\t6\t128\n2006\tAIvveD8AcYnPqYE_VEn8Bw\t6\t128\n2006\tbJmGdFWlvfM3cp8wZ9yAkA\t6\t128\n2006\t9wLtMApHLswed6DbvXscwg\t6\t128\n2006\tghCnqMBiwCggZqKOUHP91g\t6\t128\n2006\tILz8ApVEgTqbv5LnC6PyuA\t6\t128\n2006\t3sU8YYEhYIFIY-oPS_Nlqg\t6\t128\n2006\t9agfrDKFP3QXgMZgPtWvBg\t6\t128\n2006\tsVu7dQ_isyUr1toSBBrBFg\t6\t128\n2006\tj9OUZBtg8wSZOMojGxYhnw\t6\t128\n2006\tMf2NAhMTiYk0DC0fZjhNMw\t6\t128\n2006\tDecNq9BYtMwHhgdnPNGbVQ\t6\t128\n2006\tYXf5O6LPXvFQN2wjWIoo2Q\t6\t128\n2006\tLXGlXvIzoxHVE1dqkih-BQ\t6\t128\n2006\tGUTSeLgsd00OhvEdXgBeeg\t6\t128\n2006\th0MnH7UJkdibug51_sDsjQ\t6\t128\n2006\t-qoyKSF2G3PkR_7XNoJfpQ\t6\t128\n2006\t2gZ4F2OcswR7ATlyMjB2KA\t6\t128\n2006\t5L0eiAkoQIVvI_XOjzhFpA\t6\t128\n2006\t1XM-kPp37G3cs2JJAPORhw\t6\t128\n2006\tppQMi14KHUY4cOQ325cL7A\t6\t128\n2006\tp6nBKyT9Y_pFJ1WxVEowwA\t6\t128\n2006\tm5LY8iZqTdLoyjdhMf2YaA\t5\t154\n2006\ti7A72UOfldPmS4vMmEZmeg\t5\t154\n2006\tgm2ag9nOkE2u0uTR5_OHiQ\t5\t154\n2006\tjX52sZoojxyYV2viWNyO7A\t5\t154\n2006\titmb9uAolzQnmEBDlV24qQ\t5\t154\n2006\txpfHSV_yZEVjignwaQUOEg\t5\t154\n2006\tSRRRQ3zbJCnncBS4gBrA0w\t5\t154\n2006\tb8TPUD4OjwooNgq2qpbYHw\t5\t154\n2006\tb1ms4TO5yXulttVxTP02VQ\t5\t154\n2006\telyvWgnY-oN7TfLMDt9o4Q\t5\t154\n2006\tMXjOTJON8gFsXcXpfNpuig\t5\t154\n2006\tIZxEqxkWOM1cFIJSFGrZTQ\t5\t154\n2006\tzejhY7mSVWETy51MUpLJ1g\t5\t154\n2006\tRywiEGRkea2j9IY7juD24w\t5\t154\n2006\tJ30RQYQUApVezcRJB9iqxQ\t5\t154\n2006\tBf87HcPERF9yiSjb2tQBqw\t5\t154\n2006\tzD1T8JFx3O1Rf9aNu49rpQ\t5\t154\n2006\tigaoaFNkX7ieMuyUBg0u5w\t5\t154\n2006\t4HdArh7ETM2WUlzxJQiBug\t5\t154\n2006\tUHgXmu7hl-o078IW_Fp4dg\t5\t154\n2006\tDLrptiHwqa0JLYFJsp4vzg\t5\t154\n2006\tDxqZlZTJ2TcJTyqqf5k3gQ\t5\t154\n2006\t6bfcLLL35DpsxAxxk5ZNAQ\t5\t154\n2006\tHYQoxBC1y1DGPq6pGP09Tw\t5\t154\n2006\tFNh-DKnGyAF-n00lO2_-pQ\t5\t154\n2006\tHAp_qOLKgSRg9Y5f1aCOKw\t5\t154\n2006\tC1MZ_yJ3Zx6UT-bsUc5DvQ\t5\t154\n2006\tqCNZXu0nA1m9_qQDSY9bfA\t5\t154\n2006\t-uybOghOlhc_UHEZvkyShQ\t4\t182\n2006\t9CWr1HukCWdjW-5zTCXVIA\t4\t182\n2006\tLxfcCN_f8kyVhrtbeDpedQ\t4\t182\n2006\t6WfLJ5rmFrGOsNS7cKo5Mg\t4\t182\n2006\tO4VXTUdkBcoWC5oTxyIu_Q\t4\t182\n2006\thqSXx-zbBvnWW7akjPhZNg\t4\t182\n2006\tQyykOadqEnEdeOrvGBF3FQ\t4\t182\n2006\t6zZPfuZkDRzSkYY9EvVJ5A\t4\t182\n2006\tcD_hpkvErXCyQHBQzv8KYQ\t4\t182\n2006\tONDMgVKfQ9W1IDxfUuSDmA\t4\t182\n2006\tXN7GVORBtwkcq4zfhIALqg\t4\t182\n2006\tWJnyWEe_YK7JO47fcovBVw\t4\t182\n2006\tEZaZgbimYoBGheNZKv5snA\t4\t182\n2006\taIk07jxkia9izLMKRbaHHw\t4\t182\n2006\tJjtQ1txoSd69pSwUPsWxcA\t4\t182\n2006\tNY0fXpqQw09ie7hqzdsjPw\t4\t182\n2006\tcDAdfpWUkpP9BB_aW4qjbA\t4\t182\n2006\t83Rj4-b-PXUUfgz5BiptWA\t4\t182\n2006\tPtKK6dxxgmI-Di3YSifgUw\t4\t182\n2006\td9tgb-9jIfnEGVq2K4i6wg\t4\t182\n2006\t2csgiHeO_YdT06kRqbg9ZA\t4\t182\n2006\tBIrmvMEli2e5W4b5AEeJSQ\t4\t182\n2006\t9BJ6q2Z9ba6Pjj6v9VFLfA\t4\t182\n2006\tBfbGRjetw69BrnzQtt4WgA\t4\t182\n2006\tAeDdXhCMOV9TgiB8UarshA\t4\t182\n2006\thLym9La5ivWSqkDqiY4kFA\t4\t182\n2006\tPO-U11FmTDiqCEqtilFjVQ\t4\t182\n2006\tW92Wd0GE_-13ogVeKIIF7g\t4\t182\n2006\tkmGSeElZ7uHpw-2mFrUgaA\t4\t182\n2006\tF3BPJS3f3R3IdwVR-R-u6w\t4\t182\n2006\tEU2V6NOtkDkMtbIJEeEjzw\t4\t182\n2006\tt89l-cYilb3cd8S76cxSCQ\t4\t182\n2006\ti6SPpQsnb1nxy1vVzGAQSA\t4\t182\n2006\t8gg0mL6yj4vOL3f6mAOEgA\t4\t182\n2006\tIUrGaOc4Tcb-CAL7_MZXsQ\t4\t182\n2006\tlT_wcY9BeuYBRO9jh_bQXQ\t4\t182\n2006\tYKZfmqdrF10XNBIrHf7TjA\t4\t182\n2006\toi9hzJPnsf1BPdCn2wIClA\t4\t182\n2006\tYVUxUIae-d7qBwsdlbRI0Q\t4\t182\n2006\tqKgy1I7PcGTh9hd5ujhPNg\t4\t182\n2006\tHH3IyvD1MpxZ-FlazroBuQ\t4\t182\n2006\thByUtyZ0_NJRZ7SC7mC-FQ\t4\t182\n2006\t_hsDviIkedAnVcDqnVZE5w\t4\t182\n2006\tT0gWkTHWRChVUe_Dn1F8nw\t4\t182\n2006\t9PqpshAtVzFQgxUx2E81aQ\t4\t182\n2006\tT3uGZcdquapS3rakRXii3g\t4\t182\n2006\tbqserI1U9OCGwBM2dBNRZg\t4\t182\n2006\tpMltyeuU4SjT6Y8YVy7HBA\t4\t182\n2006\t6rAlqkCat6eny0qi6MyWKw\t4\t182\n2006\tZr4N9sG31fybEa-l3a_46Q\t4\t182\n2006\tXXLYEMuhpuU_nvxY0dfU7Q\t3\t232\n2006\tbtVXpb1PpzwJnYHaLavqoQ\t3\t232\n2006\tfrrJr5Kp8ut6bvBLgphSvg\t3\t232\n2006\tP9wmvuch_JmAa0SCfo3gdQ\t3\t232\n2006\tWcKhdyAJd3YIRemYr6pAFA\t3\t232\n2006\tCHUfgQLRN_J3TfyeIo-dIg\t3\t232\n2006\tGw4UiyZjER7GuyGbwSRIQw\t3\t232\n2006\teyjhVMPb-jzshQVJ5YB-6g\t3\t232\n2006\tGgnzT-zz043PW4ITu2fCQA\t3\t232\n2006\t15znE0NM6nDU2oR-i5RXVA\t3\t232\n2006\tTZ53SO335VUAeUt14E0eGQ\t3\t232\n2006\tCf4TX2sjsfheqwCyRIfSCA\t3\t232\n2006\tXKAFikZAfddYv0Vg1PUkwA\t3\t232\n2006\toBzZq4tFcmjL4DC0uZVUfw\t3\t232\n2006\tlOExMRLNEVGKz0f-zb4kCQ\t3\t232\n2006\t6vQDm-sVmd0etiGQSg8hOg\t3\t232\n2006\thRcFm2x7ta6dVIO7iVsL7A\t3\t232\n2006\tHGCKsrotMHI7Xs7IA6Ot9Q\t3\t232\n2006\t5CX8ilaGZ7kyv2rUxSdQCw\t3\t232\n2006\tt9mXmz8cPrCXqTz6tOlveQ\t3\t232\n2006\twZJEiUtMGlUhqHqFKXLp5g\t3\t232\n2006\tNvAZqXjqOJKcIWFRPiQQbA\t3\t232\n2006\tUJcXryv3GnXik-dauejBdQ\t3\t232\n2006\tzo4Y3qadH45LF1UVez1SuQ\t3\t232\n2006\toxRXJVvo-I0ZxTl44jsdrw\t3\t232\n2006\tTy52tB-bISNlSSXiEKp55w\t3\t232\n2006\tiESPlIJCcOAcyXsTSykfhQ\t3\t232\n2006\tinULmWIakdFK6KtRyATH9g\t3\t232\n2006\tDrTmpnMmhxDs2wV7i8PyOg\t3\t232\n2006\tkLj4VZiLIiHPQjHhGnD8BA\t3\t232\n2006\t9ifUT-5fMA95R4xKfL06fg\t3\t232\n2006\tgjZp61JZaqcLrKjEDVSPIQ\t3\t232\n2006\t_MTv8dl0KXwmadDf5553cw\t3\t232\n2006\t6XxPf3dSlOqnVlNNrglxIg\t3\t232\n2006\t-W3ZtZ11Rdq4fH2RPD-t9Q\t3\t232\n2006\tW5d-Nx2T2OtOECRBNUbqqA\t3\t232\n2006\tgZC7BjgkXImxeAUScGewKA\t3\t232\n2006\tIS6-mfjkhu8XxaVEUkBWgA\t3\t232\n2006\tclFehAg0EJkBuTuOb5exKw\t3\t232\n2006\tgswHttUNWDMXMKG2dkwL4g\t3\t232\n2006\th_CeTdnLzqqoYrTNJha2cA\t3\t232\n2006\ta4vPWTxMasORgjlkdZU9Mg\t3\t232\n2006\tuiGdtsCaIFPRSc23qbHzqQ\t3\t232\n2006\t38zhUVIh6t_-mpcmbWYmiw\t3\t232\n2006\tajUxkRi-as4AG7K0x9huAA\t3\t232\n2006\tpAGSv-8vo6k6hpgqw_fIdA\t3\t232\n2006\tL3aSJ65CTbEkz0-Ep6ZJrw\t3\t232\n2006\tRuqMLvQEYbPL06152nuLJw\t3\t232\n2006\toItneMKXSEV_Dzp-RA09bw\t3\t232\n2006\t5IuSKkygRmQlVOKFFWftag\t3\t232\n2006\t5Qtl5jsqsdmi5g1I869iaQ\t3\t232\n2006\t5hZ3j9HWf5cGFvzW2RnxUw\t3\t232\n2006\tKleZJjX4FcArcgBDd8CjeQ\t3\t232\n2006\t8-FzOAPGgGmfyCTyrUNw7w\t3\t232\n2006\tZrj6CuQRRs38siAjuBl2MA\t3\t232\n2006\t_Rtt86Yw-N1Rw2A19P556w\t3\t232\n2006\tVLRwkUiuU66Q5kWyAh8p6A\t3\t232\n2006\tqIossUhtsJ55_ciRTEqiPQ\t3\t232\n2006\tj55C5_rQlDRdRX7aeRopVA\t3\t232\n2006\tU5cYBblkqLqTf18en9Er5w\t3\t232\n2006\tChK39XM_3pNkYIeDv1OQhQ\t3\t232\n2006\t51oMB11zo_d1xbfMCq9U7A\t3\t232\n2006\t8Dqp0ySORL1jLwcQ1YOAGg\t3\t232\n2006\tHLNNvVX-lZztLUuzTnN73w\t3\t232\n2006\tNMpCKsJhV7BVgLxaEUovWA\t3\t232\n2006\tpgIvQGoEeyg2QIvvwQWIgA\t3\t232\n2006\tXG-JynrbKiiNaqT4ffdI_w\t3\t232\n2006\tu9aAqhOiWIw146Qtp8RW6g\t3\t232\n2006\tFVk12H4Cz4DkRzl8N5-PGQ\t3\t232\n2006\tRSMOVFq_J1TZGiieKY_G8Q\t3\t232\n2006\tKiyui53V3hJST4btFswtlg\t3\t232\n2006\t8v1UkvqBx7taVoh1nrepBg\t3\t232\n2006\tCYxLwLMNxWHFAmqAJcbv4A\t3\t232\n2006\tUZ6YOaTiZ1lTZWKASIkVuA\t3\t232\n2006\tFAeIsKkBeXvpQpj6Zc29iQ\t3\t232\n2006\tZwco3vEZqiWSepNz4eBPEg\t3\t232\n2006\teAfHeXhARXL3uj0nEEFw-g\t3\t232\n2006\tUzqf674HpGZRFJIjfp9w5A\t3\t232\n2006\tPli2_ay_Ur4QF3Vp9D0cNA\t3\t232\n2006\t_GK3DwcrfOkNOuN2LF_xig\t3\t232\n2006\tVD8Ox-akHloK3-QV3FxY-g\t3\t232\n2006\tKwIU9DBHSPeqW5MnMAwHxQ\t3\t232\n2006\tKFAHRfMI41SWzCm-MwWU_Q\t3\t232\n2006\tV8QDJYP8dZS1kdKiXt-n8w\t3\t232\n2006\tKJxtlZOa4NrmycpDCpDLCA\t3\t232\n2006\t3fKqtjyXPctiqfEkCwA5jQ\t3\t232\n2006\tKKOM5feU4TzZmUEY24y02Q\t3\t232\n2006\toTpInzEzsg3wgvMO7IIiGA\t3\t232\n2006\t5pfAggYxzNZxcf00m8H2dA\t3\t232\n2006\tgjJ9VxbWjecY-xy8a8o-DQ\t3\t232\n2006\t-begf2VegZ6_KNrrsC84Zg\t3\t232\n2006\tn5kmfK-NcAAWGB4TdFMC4Q\t3\t232\n2006\toy-pJ_bKzAHoJDMcYxOXJg\t3\t232\n2006\tjyGe9zB1O120GAHozKfVMw\t3\t232\n2006\tLHl_3FXXF-XVUEXbl6NeEA\t3\t232\n2006\t_AwBhlxEuWsPobVE21HrKg\t3\t232\n2006\tPZR-d99E1nkvI5cHFmoBQA\t3\t232\n2006\tmeXT1jrN7dycH_akrmUjLA\t3\t232\n2006\tzGSnyzu6ntVm2h5yqiTOUw\t3\t232\n2006\t7s0a89q0LSM-4f6eLQ6Kig\t3\t232\n2006\tCaD1dbfZ4uB5PAQ61g6fUw\t3\t232\n2006\txX4_yL17yphneAHYIrRwqA\t3\t232\n2006\tM_NXkghCAIMoOhTOsuI5Bg\t3\t232\n2006\tKeZjKwMbqPU2qQO7oGgWLw\t3\t232\n2006\t-peSWOplbo-9aPt3ZJr8QQ\t3\t232\n2006\tij3K7eQOqrQjA7n4eIBOPA\t3\t232\n2006\tcECtnYdL6BNfgeGLWOBpOw\t2\t338\n2006\tfdHYQbYzuWv8F84M9ZyeHw\t2\t338\n2006\thBiXu1pnUEHPLNbP80H2pA\t2\t338\n2006\tXwPAH7VOCICJE-gM-dNRxQ\t2\t338\n2006\tDbBwNGBEyKOW9nK3VeX_OQ\t2\t338\n2006\tOfaaWFIf2UoGPwos4fcwKg\t2\t338\n2006\tDW9yJ2z8GLNjN_y761Pcng\t2\t338\n2006\tA3tEi-379Vq0e9z-SOytwQ\t2\t338\n2006\trt3PC7WCgCKsoufmQJELfw\t2\t338\n2006\tflV8auMYSN8ewCpHIbq7fQ\t2\t338\n2006\tr-7AYEeuEfQx6pxXlPaTvw\t2\t338\n2006\tmQyccITA8AScIzI5Nr83OA\t2\t338\n2006\txlACoXuuSZmb83hJcDxgSg\t2\t338\n2006\td-mSKmb0c09vIdWJmEnggQ\t2\t338\n2006\tLHTsHRVgnhkBwagj81kHkQ\t2\t338\n2006\txgb7eAAvodR9P-KxDsHc6A\t2\t338\n2006\t472tC8QU56SNZwQM8PtT1w\t2\t338\n2006\tASvjSBCYRd4GhOtSIn8Gyw\t2\t338\n2006\tNxcJCKeTLNVl-xRP7rpDhw\t2\t338\n2006\tSl13Fnu5f0FY4Vpc5LVDyA\t2\t338\n2006\tHM8mOekJ028ck9yfTpldPw\t2\t338\n2006\tFPlpTKPdmpMdgFL54zBKLw\t2\t338\n2006\tYUIURN8PjHoPCAOdb6L76A\t2\t338\n2006\tvV-T6Va8RllvC00VHkYtXQ\t2\t338\n2006\t6h2nzPjZhuvg-d7Eq1E2jw\t2\t338\n2006\t8lsWibR0YSa8YWGRdTt5CQ\t2\t338\n2006\tF3nnYBk4Le9ekAVarvlmPw\t2\t338\n2006\tTq3ENRLJZRUKthxquUuMzg\t2\t338\n2006\tvgwdQ0fpDZdoTidJuwYq7w\t2\t338\n2006\tveoCLwTLB9pOrFnxNNRwlw\t2\t338\n2006\tcnrV83qYHYSwaV1MNlq71Q\t2\t338\n2006\tBUXSfbOA7pVGglUIUJsntQ\t2\t338\n2006\tNtllNRgTxVPTy4R2UKsblw\t2\t338\n2006\tTo7EBxWC-Yz011V2-tdTvA\t2\t338\n2006\tDGh85anKBzRwD8Orbolfsg\t2\t338\n2006\tj4ke3iKRCvud0rLOj0_OTA\t2\t338\n2006\tw2o8rsUA_NkNd5AbUDO3nw\t2\t338\n2006\t7YNNVkNWtxOa_QWGXHa2IA\t2\t338\n2006\t_n0vgeEXRhiC2MezhdpQ2A\t2\t338\n2006\t4E-R1FcJswNSoHAKfcaQNQ\t2\t338\n2006\thWzFphZ3sdxX6XolsXC1Jg\t2\t338\n2006\tUfYZqw3E71KuL_s16_TH-Q\t2\t338\n2006\tIiSPFuhTwy6ytbcWz4-BkQ\t2\t338\n2006\tEE8Lmen37p8TLSVxssDUBA\t2\t338\n2006\t5rg79VLNNse1kq4xf8AlXw\t2\t338\n2006\t-GXIHscgMRzex4leP4yYRQ\t2\t338\n2006\tA_Ey040gnR1J07HS0tyGdg\t2\t338\n2006\tm5e0kOgT_z5SWsAIuvcCpQ\t2\t338\n2006\tErQzO1YMf26l3JTm3u-SmQ\t2\t338\n2006\tbG6DkJKwhKMMQ0Z3GSOpmA\t2\t338\n2006\tcs1GMqTt5eGmLqQyPijYcw\t2\t338\n2006\tWwfNKaO4MOF60noA7oagRA\t2\t338\n2006\tkZLlJLkl-8LhuovdnNeRdA\t2\t338\n2006\tm3qH3d97shbvSCtmUrpDFA\t2\t338\n2006\tZTtOA14uP9zP3C1D4GUxBw\t2\t338\n2006\teT3hcLyfeVotNHK_mT0mCg\t2\t338\n2006\tRieJ-CgVvw2ZEFLTPgzFoQ\t2\t338\n2006\tm8r93MKIljjtmktJaI1JAA\t2\t338\n2006\tAB7TvtHwTncep_Lmt9nLrw\t2\t338\n2006\tXN_mILhKW559YaIHS3VWbg\t2\t338\n2006\tVIsIWxUjxwm8Nydz7WoX6Q\t2\t338\n2006\tZGjgfSvjQK886kiTzLwfLQ\t2\t338\n2006\tKWC-0FbEFlUBU7YHC0DA6w\t2\t338\n2006\tJlD8asiXfY1CoGy3VHFRlA\t2\t338\n2006\tdzZ7jClZzg8tcHXcxS19dg\t2\t338\n2006\tv6YD66ixMQ5vW9afzxxMpA\t2\t338\n2006\tLdWIjNvjdaAoAfpQhT6F9w\t2\t338\n2006\teydaYzZbJ-2cLcEDA5d5hQ\t2\t338\n2006\tGzHUGweAxqXgWX9TUNjidQ\t2\t338\n2006\tr4MjCL3ByUUSy1NW1B1OuQ\t2\t338\n2006\t5aQGcCvs3FwBXOKDmF3VHw\t2\t338\n2006\t2RvxPlh5KA2HdF8q0UVhVg\t2\t338\n2006\tfyPJy_rIwlmYmpKtEmxRIQ\t2\t338\n2006\tL4CXCKMj2NDsr8fd2_XmkA\t2\t338\n2006\tLgdmczjO47SjwwTrAjqJcw\t2\t338\n2006\t_Sr6QDhet6uctw9MSB3J9A\t2\t338\n2006\tkqn_zF3KoaoHf2aUO5nWlA\t2\t338\n2006\txl3fVHYw1oePhSw34sILmg\t2\t338\n2006\t0mA4JTKkRM8ZypKbuGR-Hg\t2\t338\n2006\tDTWtZJAIPMrZJwUJV0DJmQ\t2\t338\n2006\t0STk5pBztm3SobREne5XeA\t2\t338\n2006\tCcJQqyRIbMiGaqUNfQTkgA\t2\t338\n2006\tqOw9tRmazo8IOHIV549KyQ\t2\t338\n2006\tfO8Jw9JY2SJUecYUhsmasg\t2\t338\n2006\tHjthA8aKbrfSvlToSm8hAA\t2\t338\n2006\tamnIkiZ0WHWLJvLfndH-yw\t2\t338\n2006\t-b-Wat51yDz6PoLlFXHtwA\t2\t338\n2006\thhrUmkSUrtfuf4gVMISsLA\t2\t338\n2006\tfDk5DfePfZUQjqCyxFg49w\t2\t338\n2006\tk6HN0FE8NC8vV1sZuu0O4g\t2\t338\n2006\tMlhjg_PTkyZ7FReat_COiw\t2\t338\n2006\tt4XOD_qevS6N7ZXHJD2b-w\t2\t338\n2006\to6Aem2bYn4XVFTXuVs0T2Q\t2\t338\n2006\tx-G8HbCqwIW_fkQ5VrSYqg\t2\t338\n2006\t3fW53B_N5a_0MDnz7pYgSg\t2\t338\n2006\tN1XLIkx6mFqyiROyJ9FzPg\t2\t338\n2006\tJ3pXjuQLVOMBFjqsviy2pw\t2\t338\n2006\t3cWJPyZBfbzqkxfdF-8LOQ\t2\t338\n2006\t2GGYqUNDHJSCU3agPPB_kg\t2\t338\n2006\tmZ3uaBN_CLNeafDsxX8c-w\t2\t338\n2006\tjQgKilEwkXTNIfK1qpGKAQ\t2\t338\n2006\tFOc-fsc2oJTlqUJuJvtU6A\t2\t338\n2006\tum9XhouzTg4zZC5fVwCMVw\t2\t338\n2006\t7XvUlAuIRF9IhWAvlr5U7Q\t2\t338\n2006\t5Us7BcHkyX7vKFbvv1a5FA\t2\t338\n2006\t3FtNztJAFIlCfG3k8Vpexg\t2\t338\n2006\t1p4wP0QzgdWXWYnRSR7MBw\t2\t338\n2006\tP2fXcmsU_vrs4zB2IfsHnQ\t2\t338\n2006\thHjw71X_garwol7s3dX5ZA\t2\t338\n2006\ttECPEa3JejhblH7HDAej1g\t2\t338\n2006\tMDbmtpSe7msWS5PiFyKylw\t2\t338\n2006\t8nmTBwsCkwCMjp4qmDJmPA\t2\t338\n2006\tX7jbSd4lZZ4VjslbHewfTw\t2\t338\n2006\t-kuyXi1FKIpsV1CsXGQu4g\t2\t338\n2006\t3xhIAIzNPhFAp24U3oCB1Q\t2\t338\n2006\tJnGtgOPpkjyWOvWM0SYEXg\t2\t338\n2006\tgT5u8PAIaWQOYbf53t91KQ\t2\t338\n2006\tqtE59RKEer5zTr-i7mSGtA\t2\t338\n2006\tkFh6iqCugNZ3Qpy4xVKQvA\t2\t338\n2006\t-mvrSK4zM7dBjdnDOmrCeQ\t2\t338\n2006\tXOB-BCOnNswGmssNIcjrTw\t2\t338\n2006\t55a6H9khLqiwe_LVnHGCSg\t2\t338\n2006\t6mMk9hO_RAbdGMEGeg3oWQ\t2\t338\n2006\tsU3HYRrljZcuSl1JxTmTsA\t2\t338\n2006\tpzoxW-OJYS9mxnkXAtJy1g\t2\t338\n2006\tyfy3v_n7BWiGs6pTf58i6A\t2\t338\n2006\tBjyPiB5NjaX6PbeVaWpfaw\t2\t338\n2006\tlz4IFRcRki06zGEhisnAGg\t2\t338\n2006\taRacTc0DUiqI8VhlZTIgug\t2\t338\n2006\tCHfHFwgLvbwVDPjgTST6cw\t2\t338\n2006\tT7UdyHYCzRLE26TTYQZYQw\t2\t338\n2006\tSBTIBpUYDlBdTui6lk6tOA\t2\t338\n2006\t3ywXGq4PyUoR_XXDvK_RIA\t2\t338\n2006\tB6Jm_usNuuuWTYcSH7O70A\t2\t338\n2006\twfwMhwcsHCYDZOM0oIUmZA\t2\t338\n2006\truf7Q88uylmrk871HSbiiQ\t2\t338\n2006\tzxF7vwh32ccSN3CbCMlalw\t2\t338\n2006\t57TLX2qUBTVNH3FeFbVxQg\t2\t338\n2006\tL9mNqHKpuj1qMSJ2DxNiUA\t2\t338\n2006\tlys_Cp8Tv9BwrzGst9i_-g\t2\t338\n2006\tQAGsjbo9Wfqgz_0WlAiu8g\t2\t338\n2006\t2Vo3vUGZx-l8Xo3PbGlLsQ\t2\t338\n2006\tZJaT7o5UffkuSg69GX8u_g\t2\t338\n2006\tfyS8H0BNDv5du_X7ttUEqQ\t2\t338\n2006\t6VWXDm7k3-iPfm0cArdRdA\t2\t338\n2006\tWDLBISMduMX8W4BgibPu9g\t2\t338\n2006\t4t_ZO0Z6LXDPZ5mhdrJ7AQ\t2\t338\n2006\tom5ZiponkpRqUNa3pVPiRg\t2\t338\n2006\tPmrFSehNLWAn8pMWtB53Lg\t2\t338\n2006\t-VMmi-tMcMO7bR90aCg_iA\t2\t338\n2006\tVnja4xoPVQ7BLXIsVy_cFw\t1\t488\n2006\tvnMbt6nfO7-Fd3ESlT2fpw\t1\t488\n2006\t2FLKPWJiM_Zo0Ar68chxQQ\t1\t488\n2006\tIzf-c9_nvp-nphi2VyFgdw\t1\t488\n2006\t5wRCMyU9dEdkja_mO0qfeQ\t1\t488\n2006\t_W4y7ku6Q0uGoiI3ePtkgQ\t1\t488\n2006\thOf8XrDimMkpDRy9KZtv5g\t1\t488\n2006\tDh6oAnjvMugn0sRPcbZ3dw\t1\t488\n2006\t8hvXl0oJmU61l17LG9aDag\t1\t488\n2006\t8c8gMVeP_OkmL1PgSVpdig\t1\t488\n2006\tJwkJ3WVtRtVowHEXskNf9g\t1\t488\n2006\t4LcAmELw7wGIjvJo07bHwQ\t1\t488\n2006\tA8DQtAfrkYbiigGL45c-ig\t1\t488\n2006\ty2Bz9s0o58_7pVbQe0O2KA\t1\t488\n2006\tzNfR_5_nV5HYV8O-dTkxrg\t1\t488\n2006\t4HziAeBVVljDQSjpMm9nHw\t1\t488\n2006\txl_gcUNGJGfDHOj36bHx0g\t1\t488\n2006\tK_10Pp3LkK9r6AR75hjvwA\t1\t488\n2006\twPX50W9GDXzegMyaE93z2A\t1\t488\n2006\tRehCKViLWLzz4WAytu7hYg\t1\t488\n2006\t4b6saCX_1wl4cXZgmzMg8g\t1\t488\n2006\tgj4nZ0hG3WOtvMz2D8YUeQ\t1\t488\n2006\t34Al3p8NZfjLU_iPauoWsA\t1\t488\n2006\tMUc55Iuunq_O-qCzf1f7tA\t1\t488\n2006\txQp2-0pto8qZKYMzVrzkEA\t1\t488\n2006\t6zbzFl8u36bHu6MYdzKtuw\t1\t488\n2006\thJIkUEh3gEB3ICQwzRe1UQ\t1\t488\n2006\tGaE6XLiyWL1gVkXiiIIqPA\t1\t488\n2006\tj3clfioIsIoL8eeaxO1FRw\t1\t488\n2006\tAKXqbuifvfvNEpr3Qs51hQ\t1\t488\n2006\tYu98_qkOrcPiKHVE6uu2gg\t1\t488\n2006\ti0IFcWrXESKqyLb8vGUSrw\t1\t488\n2006\t1BSPeDwTLNHWwf4qka2m_Q\t1\t488\n2006\t6a-782Y5FXqJ7KGmQtJsSQ\t1\t488\n2006\tuSxeEUPMW1nUJr-5jHYt6Q\t1\t488\n2006\ts04IpjH4-ezcKh3cm72BIQ\t1\t488\n2006\tgoE-jPN6j28zTeYHrd7Ntg\t1\t488\n2006\tsx64BpoAn-Q2in04Pk5Lhw\t1\t488\n2006\t_cz2O9JukT1I2GuYVAA5Zg\t1\t488\n2006\tZNJiYLz_6udX3ljXPZ9FJg\t1\t488\n2006\trK8kLDiaKoIexHy3JzcVCA\t1\t488\n2006\tFeWKX0KT1xvOHc77XqDTNg\t1\t488\n2006\tZsq74nsRcudX1LC6yv8JVQ\t1\t488\n2006\tyevQjePenGCg-K_V8fpOwg\t1\t488\n2006\tF7vgCzNV-cSGvTn4szQDuQ\t1\t488\n2006\tHf3328ygirIBIzlJrA_3Ag\t1\t488\n2006\tnQ9X_ceimFxg4wNafc3mHQ\t1\t488\n2006\tWJDWGRBhFE8JGuIYnT5iKw\t1\t488\n2006\t33IZrNNgJ0y6-tJwm2ZoCQ\t1\t488\n2006\toTno7XAOiLDdAG_RMhhawQ\t1\t488\n2006\twx6EVKkwO7392nCjgta4Ag\t1\t488\n2006\tWWPt9Jmt6Nm6RJykVvrThg\t1\t488\n2006\tidGmdtq5qyDCmCoAXS34OQ\t1\t488\n2006\tAmW6MVrZ9PjG0V5vbIpIkg\t1\t488\n2006\tHshIhF76Uea0-2ht_KUisw\t1\t488\n2006\tfFGPBtsutYpn3A155Sf75Q\t1\t488\n2006\tQUfz6Tr1L6b5kAvEjHugmQ\t1\t488\n2006\tfRG9dGiwjRQ9GdBrBcqUYg\t1\t488\n2006\t5IAzQyvfyxNKKPTDBlO3Kg\t1\t488\n2006\tPhAt76Bw5kVdEFfozawNtQ\t1\t488\n2006\tNcikjx2TmNWh9Ct_eTSb7A\t1\t488\n2006\tJ7fmfD8q5v64eAmHE4dI6w\t1\t488\n2006\tmmKC6Tophh6LoMa6Y2wmVg\t1\t488\n2006\t8_1Z8sSz2VZI-frqFrh4BA\t1\t488\n2006\tecH7F0j1sM_UOD__4K8nrg\t1\t488\n2006\tA5sEtzjzUWBVcr3w_pY2Mw\t1\t488\n2006\tMvaS3GfNhlMRJo5Fkjqx7g\t1\t488\n2006\thtNJd96co9ilFdAihAglzg\t1\t488\n2006\tYvIy-WL-qtl-H3yY1rDVJA\t1\t488\n2006\t18-QJzZyXNl5lKP2xzVWFQ\t1\t488\n2006\tPNa2-EjHe_ApIgZXD6kxBg\t1\t488\n2006\tbtOcxcY-vopnn7PzQzvLiQ\t1\t488\n2006\t47jYU6CunkW--4S9vYqyYg\t1\t488\n2006\tj4WWYCnWZ7CJYJHrFctNvg\t1\t488\n2006\tgxRw9c2lvijXBNhKU5i7_g\t1\t488\n2006\t2wAFt8nu4Dm_5arpZfyAJA\t1\t488\n2006\tUnuTRYwJYxYcbG0taIzW0w\t1\t488\n2006\tE9dFQ1qWXHXPSnyXBhJHZA\t1\t488\n2006\t1m0JBs3MEsoi2t14NoVerw\t1\t488\n2006\tYoAX2wUwKFjhCKdYC5sS1Q\t1\t488\n2006\tC8BQYgLbpRyf9ENtVAujLQ\t1\t488\n2006\tCNdJaOdUjLIceVxhWcMNRA\t1\t488\n2006\tR4XtTk6biwVYEsRd3B3laA\t1\t488\n2006\t5TPIiqBAmqZt6gp4t8p-ug\t1\t488\n2006\tdNQk6gypFkFKKH0_ZJpg5g\t1\t488\n2006\tWityd7LCvfxHq1403IORgA\t1\t488\n2006\tb5xky1NsvoaUK4ScJT695g\t1\t488\n2006\tYWsNUeQf3Rox26wC1rs1Yw\t1\t488\n2006\t-eVlHbM2KRZQnBqfTXtDvw\t1\t488\n2006\tzO1yvN24JWpKENtPenzsjg\t1\t488\n2006\tZ6X8gcVu4ANyXFRdefTaxw\t1\t488\n2006\t1m4Hmm7IbgGjVupM7CQSMw\t1\t488\n2006\thxW-0PxbPvk0XDpcHO-A8Q\t1\t488\n2006\tR9_pyS6iN6oqXCM0AkJ5eg\t1\t488\n2006\tck9U4D34A-GdxqPx2kinLQ\t1\t488\n2006\tFUWSzHXtk8ZComI5iXh0wg\t1\t488\n2006\twMQkntJi_EOhyoZINt0BXA\t1\t488\n2006\t84_dntKzc1B3E_TfBeakpg\t1\t488\n2006\tFqau2I3qar-6AesW2rm7ZQ\t1\t488\n2006\tyolPOvWavn1K1zu4WhzJfg\t1\t488\n2006\txpWkEiXdYqfkT7ltLuUZAw\t1\t488\n2006\tbOzJQporJVk5LWy6KG83Bg\t1\t488\n2006\t3eHEFNrxz6m3tI3sTVBcIQ\t1\t488\n2006\t-LZuNEYabbUGmuzHDIa5GQ\t1\t488\n2006\tps1Npz3KirdZkpjk8wzd-A\t1\t488\n2006\tTmNpdjltWyobQI9iFnlYtg\t1\t488\n2006\tAgbv8YDkOE7V_ZfJseLVOA\t1\t488\n2006\tvQ8xbwx3bqcVrCdAx-tD9g\t1\t488\n2006\tzR2iAdGWaqN2dq4O-jBZBA\t1\t488\n2006\tEUN5eU5OH3837QZZYMSHxA\t1\t488\n2006\t41F78JOx5smLVQTtLKPobA\t1\t488\n2006\tNjMMTAlK4rRa4qrygnYfFg\t1\t488\n2006\tv5Impu6D7UEVN4OVYnBOxQ\t1\t488\n2006\tM0IMwwpOp3XDR9Iku9LQrg\t1\t488\n2006\tjJnjdbYxN58dbN6G2XHBPw\t1\t488\n2006\t5AY10BcvN2ewzbBb_AWVjw\t1\t488\n2006\tfVxW-65UxxdY0tBBBxBMbw\t1\t488\n2006\tcgLOKNqMjzfTjy0feTPeCw\t1\t488\n2006\t19MQQFLbpI5z6PYhHrG2mg\t1\t488\n2006\tLPTq2-fZ9_TsG5o8lAWCGg\t1\t488\n2006\tTvx_0sVkHK05ZuNx4nt1ng\t1\t488\n2006\tg2YnG8VUb9opaWF6fx6viQ\t1\t488\n2006\tyXG44jjAwTCPWFP0s4RuTA\t1\t488\n2006\tZ9WdDFTmHLiN3QN-dvKLmQ\t1\t488\n2006\tGqPN5hvqv7Nx2sxfEwZKmA\t1\t488\n2006\tPr2OQJByo3uBj-i5idk7iA\t1\t488\n2006\tKVQTyDkfvmODZlSP_YNL5Q\t1\t488\n2006\tExI15M-oXjHcF42-G1xv9w\t1\t488\n2006\td4mhNpYgIauzGjlTehBSjw\t1\t488\n2006\t1k6dVLySyEQP-YTNkja7qw\t1\t488\n2006\td_j-sQTDTn2goy7qRikT_A\t1\t488\n2006\tiHLyabFzw3U_kH6oednrIw\t1\t488\n2006\twdOHjBJXbyzlBzOhILsD9w\t1\t488\n2006\toCt5AH4jl7_kzLb-d3Nmhg\t1\t488\n2006\ts9m1lSJyedtZRJSuQBE5HA\t1\t488\n2006\tO-8thbWdkvatHlHyUp_HXQ\t1\t488\n2006\tgbgO-yfMpOtqJu2U1mFMsA\t1\t488\n2006\tB9DkHN8u90EHRhoByKxNqw\t1\t488\n2006\tyNPvrikxgqTSL65aLne_Pg\t1\t488\n2006\tz25c9TyWY1TdVEGxkj34jw\t1\t488\n2006\tPiOIIjs22gyjOPp2NWybSg\t1\t488\n2006\tl1roN8At0I31zYbQk_cTFA\t1\t488\n2006\tRF-aU7UVkGViNiKjxoW5Dw\t1\t488\n2006\tO7lq34q7G18xldKeLEA3mA\t1\t488\n2006\t1z5LVnZhXrWgsQgMDpIIzw\t1\t488\n2006\tYLAS62rxqNGZeLVpY9y-jw\t1\t488\n2006\t2rScoVak6bkRaBHEGppnYQ\t1\t488\n2006\twpr6gw4FnptTrk1CeT8POg\t1\t488\n2006\tOQ43vZBLLrdJAIm_nRbdsg\t1\t488\n2006\tDH7ABAMHvl6IQfJ_yK7x5Q\t1\t488\n2006\to2UkwgSKx8i-YtUtDD5vNg\t1\t488\n2006\t5xpFb_4kgEWhV993tH_J6A\t1\t488\n2006\trwmL8PSofMu5AkazSaV4Hw\t1\t488\n2006\tTREHfP-7NHyw4GRnjLgytw\t1\t488\n2006\teXOJ-ebVVX3ZbOOzcvpjzQ\t1\t488\n2006\tA7HeR0ayUl1nSh3cIgAxEA\t1\t488\n2006\tSvuypGpYDS00oAsElc4m8g\t1\t488\n2006\tPjzTPmdrjbsoDYjYf3_u7w\t1\t488\n2006\tdR7I5WnpsFFRT7dB9TTXCw\t1\t488\n2006\tXqmISkEvoUQ0ECK-qFQ1Kw\t1\t488\n2006\tiOEN7M84hc4Hhs2269WFvQ\t1\t488\n2006\tltQJkGtA1QMYn8a9HEWUjA\t1\t488\n2006\t07F3nl0jROXvd0RWnIB76g\t1\t488\n2006\tALTC6uE88peHF9Zwf5w3mg\t1\t488\n2006\thk1F2dL8jG-GhL5ijhYNUw\t1\t488\n2006\ta4WKfA2so4xO7wyHpPwHww\t1\t488\n2006\tH5AyD3UoMZSYfZmXFSoyCw\t1\t488\n2006\tPVHshHBXTkZmtfW4t_GwEw\t1\t488\n2006\tPAZXMutcBCQUeJxrp2u-Lw\t1\t488\n2006\tDiDEJ_RzN_olHj8z-72CXA\t1\t488\n2006\tJ6vBE0sjns8aAnQuYGpsPg\t1\t488\n2006\tup5eHa2OdoK5pr-HZ0vLmA\t1\t488\n2006\tsKE6F-SA7b6kPV0LuzBfWg\t1\t488\n2006\tDA013gKEqNa8LRx2poYeAQ\t1\t488\n2006\tO7OLR9n8MvPeJJtWXLJLLg\t1\t488\n2006\tC-SWo2QD6OeFMuk3BQUS4A\t1\t488\n2006\t4HSZulJVrwIzgKyYhphecw\t1\t488\n2006\tbeTVdIu7UGlPE2De4_zs6A\t1\t488\n2006\tedvxFqaTuqVdstoMHh0z2A\t1\t488\n2006\tx8n-zH1C4eoID1ayqRFGKQ\t1\t488\n2006\ttNCX-W8WTULG5f1ADW_9BQ\t1\t488\n2006\tlX1A5hdCzYIWDt8vDZqQuQ\t1\t488\n2006\tQ8aB9Wi0F9iEFi42P9xw7w\t1\t488\n2006\tzWLhTbc_Q0R2800Q5EPSKw\t1\t488\n2006\tSRAtioAFkNJTrsQvhl0CMA\t1\t488\n2006\tYeS72RYFOUITiMVnFuG22A\t1\t488\n2006\tpcTYfXQvsFlaKnlD_0wE_g\t1\t488\n2006\tbzXqtn2tL1BvIpYHNcZfjA\t1\t488\n2006\tcG5l8teICW5NRtRJ0GpMww\t1\t488\n2006\tRadFTkw0aERI-H5eYBQvHw\t1\t488\n2006\t-DZNjv4zH245zonFJInraA\t1\t488\n2006\tNNl4k5znKAz66NQnGclLMA\t1\t488\n2006\tmbZRFuNtJMh2TdESXLNbsQ\t1\t488\n2006\tVQ-RXIZCH-7eRG8jSMmr9w\t1\t488\n2006\tq6OaHN1brGZbB8EnDZQyGA\t1\t488\n2006\t3MG_9bIDFz67BDcYAh1aFg\t1\t488\n2006\ttrNrakI3oDc-AJt2a4EEVA\t1\t488\n2006\tmh2B2jeRj-9P2-yakBKJHg\t1\t488\n2006\t7X0gIix_aMonwdNgF0YuHg\t1\t488\n2006\tAmzUpWrgJpc-qxcVijYb2g\t1\t488\n2006\tCUjwFvpy5R2Hjgf02Nd_Bw\t1\t488\n2006\tQn7xmUR41LUfnvuVxruJsw\t1\t488\n2006\t9lhqQ3nrs9V48jzfVn7a1A\t1\t488\n2006\t48Bm7NtHTk8pkzYRevHTXg\t1\t488\n2006\tUThTaiupuP40C7UUxarX_A\t1\t488\n2006\twKlaqpLpMoSPnYS69UTfig\t1\t488\n2006\tvFAww__vodIJ2tM27zoz3Q\t1\t488\n2006\tkeOrSU_LEKl-9jh9FywjFQ\t1\t488\n2006\t0zI-DTlhntPaL5to6SLD_Q\t1\t488\n2006\tuLDSr_GPrENThdG9D1u6Vg\t1\t488\n2006\t8VmxAELPm0CKpKrZnS6NKg\t1\t488\n2006\tQYgmpmgfQfD1WypU3UNAQw\t1\t488\n2006\tFxwaUqRHxCVytN6czBNAYg\t1\t488\n2006\t4CjNnIkWUGVUyFCkMt2ZJQ\t1\t488\n2006\tz5-4xNqAIbI_RM831D2OOQ\t1\t488\n2006\tja_jAou_u7VsRiJ63qumBw\t1\t488\n2006\tLdue9HK9On2kXZs8-mP7ug\t1\t488\n2006\t1lBfVyiZoGVCjpG19T1_ow\t1\t488\n2006\tI9nz8t9uzQ_O6-mzEmQutg\t1\t488\n2006\tyPmlM7fxm6H4u3kFdvdHbw\t1\t488\n2006\tkV7kmmBw_8IPLyI5M6wgTw\t1\t488\n2006\tYxGub53X6rUqHjo6vQ0okw\t1\t488\n2006\t2Bso1ZL-nFEoaGyhjPVAAA\t1\t488\n2006\tsGYxdF8Fabu1HM8EOqA_Mw\t1\t488\n2006\tGIDenv52C2MWnOahI5ZjMw\t1\t488\n2006\twms_LD2jcrIyhMQmQjOpgA\t1\t488\n2006\tI6xm3_cVbLPlstGDF281xg\t1\t488\n2006\tB7ecAeAIrXg7sgmabS38pg\t1\t488\n2006\twd4bm2xkpS58kCOYpfzNRg\t1\t488\n2006\tDd6ElS2Cng3Qag_h4IQC-Q\t1\t488\n2006\t-o4RB5wbZvlJV7aabOVJEQ\t1\t488\n2006\ta5mGcINiWEfGQuKyhQhRxg\t1\t488\n2006\tVveQW3yKqgi8gAjwKzUVBg\t1\t488\n2006\t__05rytNjsye9MBhqB0DMA\t1\t488\n2006\tibBA6fBW6YC9L5PivJSt-Q\t1\t488\n2006\t0DpCybqPb2lLa_YFX4iNmQ\t1\t488\n2006\tKo7IzO_ujpHowQjhzuFx6w\t1\t488\n2006\towYhJ-FvYG9nmMIFS_FvdA\t1\t488\n2006\tP0z96gPph_NKJ8mJG6MYFQ\t1\t488\n2006\tJRHxiuYpY7wk-tVbVcfIjg\t1\t488\n2006\tDirLbUr0j_5w5PJZoa0Fsg\t1\t488\n2006\thX5D5lXijHFcm4WGtaRKng\t1\t488\n2006\ts3kRi7b8t2sdtYcsMbqlJA\t1\t488\n2006\tyNcSC0LCO2mLN3bWV1g5Gg\t1\t488\n2006\taWySRV-RjlKX22HhB7_qBQ\t1\t488\n2006\tP6qSP8O_4BrS68x8fX2PBA\t1\t488\n2006\tXKvbfNylF6Yq8hpwqaZrhA\t1\t488\n2006\tUS4XWHCxjPA07Q_MESq0cQ\t1\t488\n2006\tWPRuJp0BhNdlgYXKZewpDg\t1\t488\n2006\tpJtb87hFnwTNYJ-cW3Ad6Q\t1\t488\n2006\tc0mGQqHvZSvWXW-TeWrHwQ\t1\t488\n2006\toCiZPIXZQwIatPswTJ5qlg\t1\t488\n2006\tXsPZLT3z_i-weoYUhE7TQQ\t1\t488\n2006\t2rOOcv40k0K-Yjjjgo_ntw\t1\t488\n2006\t56vERWd2VPTfjytCQlSc6g\t1\t488\n2006\tIWzCoFNH-hQKreb4LB9mgw\t1\t488\n2006\tp-4aJyjAmbYY8DPKYQkCKA\t1\t488\n2006\t5F_ASUSCHFf3YotkKioZ5w\t1\t488\n2006\tqe9r7hfzHbNm1amyCPqECQ\t1\t488\n2006\tiXmXJG-Hgi7FhLWk8DjDVw\t1\t488\n2006\tFf7hDUHuoFTVZGzl865cOw\t1\t488\n2006\ts-4lus5erofUCJGR85BDog\t1\t488\n2006\typk49oQdoZHMX41ftztGKg\t1\t488\n2006\tNQysyhps0a7MTytWCJiS3g\t1\t488\n2006\tEsAG-AIdY0vW43yFYcdknQ\t1\t488\n2006\tWJnEifJRkI6bCH2iw8brFg\t1\t488\n2006\tumosZNYFQ5ObC8xEHHODIQ\t1\t488\n2006\tRqUJo6tjD8m4JEuZ37VN5g\t1\t488\n2006\tO4m2cYCJ513aUWApz13Wlw\t1\t488\n2006\tXV3Pphcs9MqEuNTtLxTFqw\t1\t488\n2006\tv3Aeeo4vjAIPrjqFpYKTpw\t1\t488\n2006\t6mNEl0G4Vn7zlBcUAuV-cg\t1\t488\n2006\tWBmqTb2IrJu9_nIWgZu21g\t1\t488\n2006\tTEtzbpgA2BFBrC0y0sCbfw\t1\t488\n2006\tjx7UAf9PWxf0DRWUoemTVQ\t1\t488\n2006\tqSyFxa1DB5V4Lu8xzS_Psg\t1\t488\n2006\tIgkDYXTO6XP7VGi6xIOJbw\t1\t488\n2006\tiYYsZ78iPk6H6Q5xukPoXw\t1\t488\n2006\tLgaN_dXrlhCTqbnXMByHlg\t1\t488\n2006\t-Tj4e-zW67MXj9Z7-Zkzpw\t1\t488\n2006\tiVJ9zHL3PUbkJvyYqZ09vw\t1\t488\n2006\tNF5E21qvM0E3GhyVZ90lqA\t1\t488\n2006\tHc5Q5rmByOU6gdGkr8TLBg\t1\t488\n2006\tPdpWp_j67Nfr_oQF-4yKUw\t1\t488\n2006\tWt6eQxdZVDpfCfSBc9SSeA\t1\t488\n2006\t1w5bmM1qsFdQ6NbAU6ZDjQ\t1\t488\n2006\tGB3qwSzhx2d8DmDSImBWdg\t1\t488\n2006\tAlQoV84toovGLXHxwZiuGw\t1\t488\n2006\t8ZJ7zoDjcOBlOwGnbyP5EQ\t1\t488\n2006\trNT1R8vH3mgTYCElrSPgew\t1\t488\n2006\tyPLi_dtwzBk92m8Pqmxylw\t1\t488\n2006\tYE_Pho9VGkH7b33PFmRDzg\t1\t488\n2006\t_oqOCBkVGSC8FcwqUWsycQ\t1\t488\n2006\tpRxPH121F-D2oj3PjgeD_Q\t1\t488\n2006\t_oV5nI6Zf_dQSYHjS7V3eg\t1\t488\n2006\tEyLVCFOKltmlMg7XcRxU9Q\t1\t488\n2006\tJ_rirNmdQkNOnXRgeCXghw\t1\t488\n2006\tveJj_EUX0ARV-hReTi2Smw\t1\t488\n2006\too-3c7bZndIYh6xKj-v4nQ\t1\t488\n2006\tGUJio6t-Z0pRbdPgN_WN1g\t1\t488\n2006\tNDvLSbMK4YYnEeuHsaMhvg\t1\t488\n2006\tiqnuEIVEAHVyqp3-szgKBA\t1\t488\n2006\tRJqgJPYvGib7R754EhB9gw\t1\t488\n2006\tqkg7aI2x3jxxS7ss9uW2sQ\t1\t488\n2006\tjNBvfr_PDR_NxKf8OgurqQ\t1\t488\n2006\tdUFdPiOJST9RfjJaY-2X1w\t1\t488\n2006\tJdUeGw29Z0JIbOwcVCPSzA\t1\t488\n2006\tBgAL7CCy38LTO6Pm58Os5A\t1\t488\n2006\t06BGjDT4KMZIPzQptMmiPA\t1\t488\n2006\tfvWKKvBwf3nkiibzYZJlsw\t1\t488\n2006\t64o6vJrByaGTStMvvU45JQ\t1\t488\n2006\tWlbmAfzCG_CI9s3cDuBtJg\t1\t488\n2006\ts3D3oghMaX10JpvpAQIHig\t1\t488\n2006\tUQFE3BT1rsIYrcDvu_XVow\t1\t488\n2006\tuKprY5zjYtPTya8mYK4N-Q\t1\t488\n2006\t89yr7wNIk8TE03yKfTRLuQ\t1\t488\n2006\txFbvPljRiYopjLF6G37Xfw\t1\t488\n2006\t45n8vSGBOGCfsk-jN4eLFg\t1\t488\n2006\t_vSA8Ps9s_npHOAk99p4MA\t1\t488\n2006\tLzCRz1uoWS6YPNFLcKzrGg\t1\t488\n2006\tIA3no4scPDMk_1goKmAKfw\t1\t488\n2006\t8BpJUrRCezI98_gKZWFZmQ\t1\t488\n2006\t7UN0GtEVQ3qkw9runiTDpA\t1\t488\n2006\t77yYWUD7hvvrHIXiGSR8yA\t1\t488\n2006\t1h_UV-EwzmqZIB8uErf8ow\t1\t488\n2006\tH13ZCSpJql7MbVtefTAoVg\t1\t488\n2006\tY5a5Wxj-I3Zu-lmrZtyflQ\t1\t488\n2006\tS5MJPV8-ayKYT5VzDkpALQ\t1\t488\n2006\trAkS02Aie5d_nWI4YdQ9fg\t1\t488\n2006\t3T4Flud8Y9mNRkVai1oAuA\t1\t488\n2006\t9-e6IZC7lv7zWVGr0kDBfw\t1\t488\n2006\tHFfOJElAMRT17IfVG0y5iw\t1\t488\n2006\tB0QGBVCUm54vs_waVzcScA\t1\t488\n2006\tCZUbIc3MDkQykVCxH1BWLg\t1\t488\n2006\tospduHDy9IPFYD1UBwaJIw\t1\t488\n2006\t9vEscSSm_ZiI8-sUKihv5A\t1\t488\n2006\taAMbdEgSzj7k5UmGQu9fYg\t1\t488\n2006\t4ll-oTtXQ_ISmxqGYLvX8w\t1\t488\n2006\t9oa-ZMpWI42A_NH4LroCAw\t1\t488\n2006\tkx78OXBjcgLUdTxHh_uRjw\t1\t488\n2006\tzY8D8o275ZTzCgGANelbcw\t1\t488\n2006\t1S4noYXci3XxC7j4p_-n_Q\t1\t488\n2006\t0V4Ra6jCmSAgFtCiORr4QA\t1\t488\n2006\teL9CR1oxghmW8MyP5duxbw\t1\t488\n2006\tzuB-N9g3HgWt5qhDO_0oBg\t1\t488\n2006\t6v7kbVe-1E7qoouxPMhnQQ\t1\t488\n2006\tOVThXsI4txFUqW5T-W7Q4w\t1\t488\n2006\tAhVWzMyXqHibkdr4uHo2kQ\t1\t488\n2006\t2xrNYIsoN40psqwaoRYmmg\t1\t488\n2006\tlXn75G7W2l32Seh603rQrg\t1\t488\n2006\t_H4Ph8YMFUiJtPP1pB12Qw\t1\t488\n2006\tcOl6u3PosSzShtpQt3nwFQ\t1\t488\n2006\tusXvQvbWPcqCEnLJrloVRA\t1\t488\n2006\t-SuJ4fQMyOb4Cr_t4MJuTw\t1\t488\n2006\tGkKlfPzQev65YGypEYQ79Q\t1\t488\n2006\tFiPLqLSS2O7xp4W1z4H9Og\t1\t488\n2006\to-55uIudvifmihhf_G_daw\t1\t488\n2006\t-YExAkxY9AX6nkAYjEL7YA\t1\t488\n2006\tYI-YOiFsXlpba3N7wCYUkQ\t1\t488\n2006\tI9v7jlsljI9NLnrsqIO4qQ\t1\t488\n2006\thPek1QkY8JNocXRamUbKnQ\t1\t488\n2006\tpxDL6EULUkNIoBru6CnSvA\t1\t488\n2006\tDOFamdMaC_hjn9zg3Gs-0w\t1\t488\n2006\tgFn0pKyMCB1Z3fBGghoppw\t1\t488\n2006\tWqFO9ApUbeThw5jpTfNfPg\t1\t488\n2006\tCiNybPWx4BPl-Dpg95bsKg\t1\t488\n2006\txSHohIT29THBiZ14G9cu1g\t1\t488\n2006\tVQxZA1Va8MBVpI3fw3nsqg\t1\t488\n2006\tuBQIboVaOfJ_BXn34_JKCA\t1\t488\n2006\t4IcEOf7_eOWZGmb9EkkzDw\t1\t488\n2007\t0yYCMhDWCEIVUyZLzDWwqQ\t316\t1\n2007\t5aVByErCyBwi-cnx_iEJmg\t305\t2\n2007\t6O0MxTs3Pzzj5cXSHgYmrw\t264\t3\n2007\tbJ5FtCtZX3ZZacz2_2PJjA\t263\t4\n2007\tRdJ7Ykelg8w4y5FTmxjT8g\t228\t5\n2007\tTLcUXi2bn6v4hdB8X-M73w\t218\t6\n2007\trjD5JDrDndu0vZvUhnnA7g\t198\t7\n2007\tkS1MQHYwIfD0462PE61IBw\t175\t8\n2007\tgpqGjIHlvUKDTttna4wcZQ\t172\t9\n2007\t6s-g2vFu12OemhiK3FJuOQ\t144\t10\n2007\tJM2PVRrNAXTtHVT5Nbo3jg\t120\t11\n2007\t4U4vN1wDwgaSUBmV7dTzqw\t109\t12\n2007\tgfQqQYI5_hCAGEHlHXIz2Q\t107\t13\n2007\tx-t7rHvsXsDvFlZgXB8lWQ\t101\t14\n2007\tT6zcfyO8eR2Py9V_bK_K4w\t87\t15\n2007\twBKALvzEZM1ZxpkWeDjmsA\t83\t16\n2007\t1eqy55tfazEXqDvGq2LDFw\t65\t17\n"
+          },
+          {
+            "type": "HTML",
+            "data": "<div class=\"result-alert alert-warning\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Output is truncated</strong> to 1000 rows. Learn more about <strong>zeppelin.spark.maxResult</strong></div>\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:26142"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383053127_1046775333",
+      "id": "paragraph_1710339629966_1232337403",
+      "dateCreated": "2024-03-14T10:24:13+0800",
+      "dateStarted": "2024-03-14T11:13:22+0800",
+      "dateFinished": "2024-03-14T11:16:24+0800",
+      "status": "FINISHED",
+      "$$hashKey": "object:25669"
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql import HiveContext\n\n# Create a HiveContext\nhc = HiveContext(sc)\n\n# Execute SQL query to extract the top 20 common words from reviews\nresult = hc.sql(f\"\"\"\n    SELECT word, COUNT(*) AS word_count\n    FROM (\n        SELECT EXPLODE(SPLIT(rev_text, ' ')) AS word\n        FROM review\n    ) words\n    GROUP BY word\n    ORDER BY word_count DESC\n    LIMIT 20\n\"\"\")\n\n# Show the result\nz.show(result)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T16:55:45+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "word": "string",
+                      "word_count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "word\tword_count\nthe\t29915947\nand\t25426973\n\t19947735\nI\t18356823\na\t18262367\nto\t17433625\nwas\t13224608\nof\t10288741\nis\t8484683\nfor\t8192710\nin\t7671822\nThe\t6615011\nit\t6130857\nwith\t5878175\nmy\t5656663\nthat\t5538741\nbut\t4881778\non\t4805997\nhave\t4427205\nthis\t4208394\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:26240"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383053133_1725216203",
+      "id": "paragraph_1710344550811_2076227747",
+      "dateCreated": "2024-03-14T10:24:13+0800",
+      "dateStarted": "2024-03-14T16:42:04+0800",
+      "dateFinished": "2024-03-14T16:55:44+0800",
+      "status": "FINISHED",
+      "$$hashKey": "object:25670"
+    },
+    {
+      "text": "%pyspark\r\nfrom pyspark.sql import HiveContext\r\nfrom pyspark.sql.functions import explode\r\nfrom pyspark.ml.feature import RegexTokenizer\r\nfrom pyspark.ml import Pipeline\r\nimport nltk\r\nfrom nltk.corpus import stopwords\r\nfrom nltk import pos_tag\r\nfrom wordcloud import WordCloud\r\nimport matplotlib.pyplot as plt\r\n\r\n# Initialize NLTK\r\nnltk.download('stopwords')\r\nnltk.download('averaged_perceptron_tagger')\r\n\r\n# Create a HiveContext\r\nhc = HiveContext(sc)\r\n\r\n# Set the database name\r\ndatabase_name = \"your_database_name\"\r\n\r\n# Load the reviews data from Hive\r\nreviews_df = hc.table(f\"{database_name}.review\")\r\n\r\n# Tokenize the reviews into words\r\ntokenizer = RegexTokenizer(inputCol=\"rev_text\", outputCol=\"words\", pattern=\"\\\\W\")\r\ntokenized_df = tokenizer.transform(reviews_df)\r\n\r\n# Define the function to filter words based on POS tags\r\ndef filter_words(words):\r\n    filtered_words = []\r\n    for word, pos in pos_tag(words):\r\n        # Filter out non-alphabetic words and stopwords\r\n        if word.isalpha() and word not in stopwords.words('english'):\r\n            # Filter out only nouns, adjectives, and verbs\r\n            if pos.startswith('NN') or pos.startswith('JJ') or pos.startswith('VB'):\r\n                filtered_words.append(word.lower())\r\n    return filtered_words\r\n\r\n# Apply the filtering function to the tokenized words\r\nfilter_udf = udf(filter_words, ArrayType(StringType()))\r\nfiltered_words_df = tokenized_df.withColumn(\"filtered_words\", filter_udf(\"words\"))\r\n\r\n# Explode the filtered words to create one row per word\r\nexploded_df = filtered_words_df.select(explode(\"filtered_words\").alias(\"word\"))\r\n\r\n# Count the occurrences of each filtered word\r\nword_counts = exploded_df.groupBy(\"word\").count().orderBy(\"count\", ascending=False)\r\n\r\n# Convert the result to Pandas for generating word cloud\r\nword_counts_pandas = word_counts.toPandas()\r\n\r\n# Generate the word cloud\r\nwordcloud = WordCloud(width=800, height=40\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T17:00:21+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Traceback (most recent call last):\n  File \"/tmp/python3310610295977251615/zeppelin_python.py\", line 152, in <module>\n    code = compile('\\n'.join(stmts), '<stdin>', 'exec', ast.PyCF_ONLY_AST, 1)\n  File \"<stdin>\", line 56\n    __zeppelin__._displayhook()\n               ^\nSyntaxError: invalid syntax\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383053134_1180810270",
+      "id": "paragraph_1710344566094_1933366445",
+      "dateCreated": "2024-03-14T10:24:13+0800",
+      "dateStarted": "2024-03-14T17:00:21+0800",
+      "dateFinished": "2024-03-14T17:00:21+0800",
+      "status": "ERROR",
+      "$$hashKey": "object:25671"
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql import HiveContext\n\n# Create a HiveContext\nhc = HiveContext(sc)\n\n\n# Define the selected words\nselected_words = [\"Chinese\", \"steak\"]\n\n# Execute SQL query to find co-occurrences of selected words\nresult = hc.sql(f\"\"\"\n    SELECT word1, word2, COUNT(*) AS co_occurrences\n    FROM (\n        SELECT EXPLODE(SPLIT(word, ' ')) AS word1, word2\n        FROM (\n            SELECT CONCAT_WS(' ', SPLIT(rev_text, ' ')) AS word\n            FROM review\n            WHERE {' OR '.join([f\"rev_text LIKE '%{word}%'\" for word in selected_words])}\n        ) t1\n    ) t2\n    WHERE word1 != word2\n    GROUP BY word1, word2\n    ORDER BY co_occurrences DESC\n\"\"\")\n\n# Show the result\nz.show(result)\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T17:08:18+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 25: \"\"\")\nTraceback (most recent call last):\n  File \"/opt/spark-2.4.8/python/pyspark/sql/utils.py\", line 63, in deco\n    return f(*a, **kw)\n  File \"/opt/spark-2.4.8/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py\", line 328, in get_return_value\n    format(target_id, \".\", name), value)\npy4j.protocol.Py4JJavaError: An error occurred while calling o74.sql.\n: org.apache.spark.sql.AnalysisException: cannot resolve '`word2`' given input columns: [t1.word, word1]; line 4 pos 51;\n'Sort ['co_occurrences DESC NULLS LAST], true\n+- 'Aggregate ['word1, 'word2], ['word1, 'word2, count(1) AS co_occurrences#374L]\n   +- 'Filter NOT ('word1 = 'word2)\n      +- 'SubqueryAlias `t2`\n         +- 'Project [word1#386, 'word2]\n            +- Generate explode(split(word#372,  )), false, [word1#386]\n               +- SubqueryAlias `t1`\n                  +- Project [concat_ws( , split(rev_text#383,  )) AS word#372]\n                     +- Filter (rev_text#383 LIKE %Chinese% || rev_text#383 LIKE %steak%)\n                        +- SubqueryAlias `default`.`review`\n                           +- HiveTableRelation `default`.`review`, org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, [review_id#376, rev_user_id#377, rev_business_id#378, rev_stars#379, rev_useful#380, rev_funny#381, rev_cool#382, rev_text#383, rev_timestamp#384, rev_date#385]\n\n\tat org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:42)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$checkAnalysis$1$$anonfun$apply$3.applyOrElse(CheckAnalysis.scala:113)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$checkAnalysis$1$$anonfun$apply$3.applyOrElse(CheckAnalysis.scala:110)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:280)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:280)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:69)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:279)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsUp$1.apply(QueryPlan.scala:93)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsUp$1.apply(QueryPlan.scala:93)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:105)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:105)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:69)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpression$1(QueryPlan.scala:104)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:116)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1$2.apply(QueryPlan.scala:121)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.immutable.List.foreach(List.scala:392)\n\tat scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n\tat scala.collection.immutable.List.map(List.scala:296)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:121)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$2.apply(QueryPlan.scala:126)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:186)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.mapExpressions(QueryPlan.scala:126)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressionsUp(QueryPlan.scala:93)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$checkAnalysis$1.apply(CheckAnalysis.scala:110)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$checkAnalysis$1.apply(CheckAnalysis.scala:88)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:126)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat scala.collection.immutable.List.foreach(List.scala:392)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat scala.collection.immutable.List.foreach(List.scala:392)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat scala.collection.immutable.List.foreach(List.scala:392)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$foreachUp$1.apply(TreeNode.scala:125)\n\tat scala.collection.immutable.List.foreach(List.scala:392)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:125)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis$class.checkAnalysis(CheckAnalysis.scala:88)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis(Analyzer.scala:95)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$$anonfun$executeAndCheck$1.apply(Analyzer.scala:108)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$$anonfun$executeAndCheck$1.apply(Analyzer.scala:105)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:201)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:105)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:58)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:56)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:48)\n\tat org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:78)\n\tat org.apache.spark.sql.SparkSession.sql(SparkSession.scala:643)\n\tat sun.reflect.GeneratedMethodAccessor88.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:238)\n\tat java.lang.Thread.run(Thread.java:748)\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/tmp/python3310610295977251615/zeppelin_python.py\", line 162, in <module>\n    exec(code, _zcUserQueryNameSpace)\n  File \"<stdin>\", line 25, in <module>\n  File \"/opt/spark-2.4.8/python/pyspark/sql/context.py\", line 358, in sql\n    return self.sparkSession.sql(sqlQuery)\n  File \"/opt/spark-2.4.8/python/pyspark/sql/session.py\", line 767, in sql\n    return DataFrame(self._jsparkSession.sql(sqlQuery), self._wrapped)\n  File \"/opt/spark-2.4.8/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py\", line 1257, in __call__\n    answer, self.gateway_client, self.target_id, self.name)\n  File \"/opt/spark-2.4.8/python/pyspark/sql/utils.py\", line 69, in deco\n    raise AnalysisException(s.split(': ', 1)[1], stackTrace)\npyspark.sql.utils.AnalysisException: \"cannot resolve '`word2`' given input columns: [t1.word, word1]; line 4 pos 51;\\n'Sort ['co_occurrences DESC NULLS LAST], true\\n+- 'Aggregate ['word1, 'word2], ['word1, 'word2, count(1) AS co_occurrences#374L]\\n   +- 'Filter NOT ('word1 = 'word2)\\n      +- 'SubqueryAlias `t2`\\n         +- 'Project [word1#386, 'word2]\\n            +- Generate explode(split(word#372,  )), false, [word1#386]\\n               +- SubqueryAlias `t1`\\n                  +- Project [concat_ws( , split(rev_text#383,  )) AS word#372]\\n                     +- Filter (rev_text#383 LIKE %Chinese% || rev_text#383 LIKE %steak%)\\n                        +- SubqueryAlias `default`.`review`\\n                           +- HiveTableRelation `default`.`review`, org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, [review_id#376, rev_user_id#377, rev_business_id#378, rev_stars#379, rev_useful#380, rev_funny#381, rev_cool#382, rev_text#383, rev_timestamp#384, rev_date#385]\\n\"\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710406587487_1615176252",
+      "id": "paragraph_1710406587487_1615176252",
+      "dateCreated": "2024-03-14T16:56:27+0800",
+      "dateStarted": "2024-03-14T17:08:18+0800",
+      "dateFinished": "2024-03-14T17:08:18+0800",
+      "status": "ERROR",
+      "$$hashKey": "object:25672"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T17:01:16+0800",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710406876302_787026858",
+      "id": "paragraph_1710406876302_787026858",
+      "dateCreated": "2024-03-14T17:01:16+0800",
+      "status": "READY",
+      "$$hashKey": "object:25673"
+    }
+  ],
+  "name": "Review Analysis",
+  "id": "2JSXYYSBS",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {
+    "isRunning": false
+  },
+  "path": "/Review Analysis"
+}

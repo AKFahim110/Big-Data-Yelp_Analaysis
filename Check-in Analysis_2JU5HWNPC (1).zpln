@@ -1,0 +1,464 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%pyspark\n# Query the check-in data\ncheckinDF = spark.sql(\"SELECT checkin_dates FROM checkin\")\nfrom pyspark.sql.functions import year, count\n\n# Extract the year from the check-in date\ncheckinDF = checkinDF.withColumn(\"checkin_year\", year(\"checkin_dates\"))\n\n# Count the check-ins per year\nyearlyCheckinCountDF = checkinDF.groupBy(\"checkin_year\").agg(count(\"*\").alias(\"checkin_count\"))\n\n# Show the result\nz.show(yearlyCheckinCountDF)\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T10:34:57+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "checkin_year": "string",
+                      "checkin_count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Table(name='business', database='default', description=None, tableType='MANAGED', isTemporary=False), Table(name='checkin', database='default', description=None, tableType='MANAGED', isTemporary=False), Table(name='json_business', database='default', description=None, tableType='EXTERNAL', isTemporary=False), Table(name='json_checkin', database='default', description=None, tableType='EXTERNAL', isTemporary=False), Table(name='json_review', database='default', description=None, tableType='EXTERNAL', isTemporary=False), Table(name='json_user', database='default', description=None, tableType='EXTERNAL', isTemporary=False), Table(name='review', database='default', description=None, tableType='MANAGED', isTemporary=False), Table(name='users', database='default', description=None, tableType='MANAGED', isTemporary=False)]\n\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "checkin_year\tcheckin_count\n2018\t6351\n2015\t9952\n2022\t68\n2013\t12350\n2014\t10420\n2019\t5828\n2020\t3603\n2012\t14548\n2009\t2\n2016\t8487\n2010\t28375\n2011\t21836\n2017\t7108\n2021\t3002\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19272"
+            },
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19273"
+            },
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19274"
+            },
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19275"
+            },
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19276"
+            },
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19277"
+            },
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19278"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383101272_482534191",
+      "id": "paragraph_1710345885506_1921019870",
+      "dateCreated": "2024-03-14T10:25:01+0800",
+      "dateStarted": "2024-03-14T10:33:55+0800",
+      "dateFinished": "2024-03-14T10:34:32+0800",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:19043"
+    },
+    {
+      "text": "%pyspark\r\nfrom pyspark.sql.functions import hour\r\n\r\n# Extract the hour from the check-in date\r\ncheckinDF = checkinDF.withColumn(\"checkin_hour\", hour(\"checkin_dates\"))\r\n\r\n# Count the check-ins per hour and order by check-in hour\r\nhourlyCheckinCountDF = checkinDF.groupBy(\"checkin_hour\").count().orderBy(\"checkin_hour\")\r\n\r\n# Show the result\r\nz.show(hourlyCheckinCountDF)\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T10:37:47+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "checkin_hour0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "count1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "desc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "checkin_hour": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "checkin_hour\tcount\nnull\t122319\n0\t428\n1\t308\n2\t247\n3\t180\n4\t142\n5\t99\n6\t44\n7\t40\n8\t29\n9\t24\n10\t37\n11\t101\n12\t186\n13\t361\n14\t513\n15\t672\n16\t772\n17\t835\n18\t904\n19\t889\n20\t809\n21\t730\n22\t683\n23\t578\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19400"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383101272_1601389121",
+      "id": "paragraph_1710345997433_1359309035",
+      "dateCreated": "2024-03-14T10:25:01+0800",
+      "dateStarted": "2024-03-14T10:37:47+0800",
+      "dateFinished": "2024-03-14T10:38:00+0800",
+      "status": "FINISHED",
+      "$$hashKey": "object:19044"
+    },
+    {
+      "text": "%pyspark\r\nfrom pyspark.sql import HiveContext\r\n \r\nhc = HiveContext(sc)\r\nresult = hc.sql(\"\"\"\r\n    SELECT b.city, COUNT(*) AS checkin_count\r\n    FROM checkin c\r\n    JOIN business b ON c.business_id = b.business_id\r\n    GROUP BY b.city\r\n    ORDER BY checkin_count DESC\r\n\"\"\")\r\n \r\nz.show(result)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T10:48:28+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "city": "string",
+                      "checkin_count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "city\tcheckin_count\nPhiladelphia\t12892\nTampa\t8005\nTucson\t7880\nIndianapolis\t6915\nNashville\t6178\nNew Orleans\t5867\nReno\t5097\nEdmonton\t4675\nSaint Louis\t4369\nSanta Barbara\t2989\nBoise\t2471\nClearwater\t1900\nMetairie\t1539\nSaint Petersburg\t1448\nSparks\t1345\nWilmington\t1263\nFranklin\t1227\nSt. Louis\t1088\nSt. Petersburg\t1052\nBrandon\t930\nCarmel\t877\nMeridian\t868\nCherry Hill\t856\nLargo\t839\nGoleta\t683\nBrentwood\t669\nWest Chester\t662\nGreenwood\t588\nPalm Harbor\t572\nKenner\t539\nRiverview\t528\nFishers\t519\nLutz\t512\nNew Port Richey\t511\nKing of Prussia\t509\nWesley Chapel\t506\nDunedin\t444\nPinellas Park\t443\nDoylestown\t423\nHendersonville\t407\nNorristown\t388\nBensalem\t388\nMarlton\t364\nArdmore\t361\nExton\t357\nTarpon Springs\t351\nSpringfield\t348\nWayne\t340\nSpring Hill\t338\nSt Petersburg\t330\nNewark\t326\nGretna\t326\nSmyrna\t322\nLansdale\t321\nPhoenixville\t319\nMedia\t317\nSt Louis\t314\nMount Laurel\t312\nSeminole\t307\nFlorissant\t293\nTrenton\t292\nSaint Charles\t289\nAvon\t288\nSherwood Park\t282\nLanghorne\t278\nHarvey\t274\nPottstown\t272\nConshohocken\t270\nBelleville\t270\nNewtown\t270\nWillow Grove\t268\nPlainfield\t260\nCarpinteria\t259\nBryn Mawr\t258\nOro Valley\t256\nEdwardsville\t253\nMadison\t251\nHavertown\t249\nHermitage\t246\nMount Juliet\t244\nLevittown\t242\nEagle\t242\nNorth Wales\t241\nBallwin\t241\nOldsmar\t239\nFenton\t237\nValrico\t236\nMalvern\t234\nFairview Heights\t231\nVoorhees\t229\nPort Richey\t228\nNew Hope\t225\nWarminster\t217\nPlant City\t211\nAntioch\t210\nZionsville\t207\nCollegeville\t203\nCreve Coeur\t199\nArnold\t197\nKirkwood\t196\nDowningtown\t196\nClayton\t192\nUpper Darby\t189\nNew Castle\t187\nSewell\t186\nHudson\t184\nJenkintown\t184\nBrownsburg\t182\nMoorestown\t180\nMaryland Heights\t179\nGoodlettsville\t177\nPlymouth Meeting\t176\nGlen Mills\t173\nAmbler\t171\nMedford\t170\nWarrington\t170\nBala Cynwyd\t169\nBurlington\t168\nHaddonfield\t163\nHorsham\t163\nSt. Pete Beach\t162\nSouthampton\t162\nClearwater Beach\t159\nMarrero\t158\nKennett Square\t157\nNewtown Square\t156\nMadeira Beach\t155\nCollingswood\t155\nBlue Bell\t154\nWoodbury\t150\nGlenside\t149\nBridgeton\t148\nChesterfield\t147\nCollinsville\t146\nRoyersford\t144\nO'Fallon\t143\nAbington\t142\nHarahan\t141\nDes Peres\t140\nSicklerville\t138\nAlton\t137\nGallatin\t137\nHatboro\t137\nMaple Shade\t134\nFairless Hills\t133\nDrexel Hill\t132\nPaoli\t131\nYardley\t130\nHuntingdon Valley\t130\nRuskin\t129\nPennsauken\t129\nMaplewood\t127\nGlassboro\t126\nBroomall\t126\nSafety Harbor\t125\nKing Of Prussia\t125\nTemple Terrace\t122\nAudubon\t117\nGarden City\t117\nDeptford\t116\nApollo Beach\t115\nTurnersville\t113\nLambertville\t113\nOdessa\t113\nZephyrhills\t112\nBlackwood\t111\nManchester\t110\nAston\t109\nMount Holly\t109\nGulfport\t108\nChalmette\t107\nEwing\t105\nBordentown\t104\nWebster Groves\t103\nCinnaminson\t102\nBristol\t102\nTampa Bay\t101\nMorrisville\t99\nChalfont\t98\nCamden\t98\nTreasure Island\t97\nChadds Ford\t97\nSt. Charles\t97\nElkins Park\t96\nHoliday\t96\nWilliamstown\t96\nBerwyn\t96\nSeffner\t95\nNarberth\t95\nSt Charles\t95\nUniversity City\t94\nMarana\t92\nDelran\t91\nHazelwood\t91\nSt Albert\t90\nTrinity\t90\nLand O Lakes\t90\nEast Norriton\t90\nMontgomeryville\t88\nClementon\t88\nRichmond Heights\t87\nIsla Vista\t87\nSouderton\t85\nHatfield\t84\nFolsom\t83\nBerlin\t83\nFeasterville Trevose\t82\nNolensville\t82\nHarleysville\t81\nWynnewood\t80\nIndian Rocks Beach\t78\nMontecito\t78\nLansdowne\t77\nLand O' Lakes\t77\nHockessin\t76\nO Fallon\t76\nMooresville\t75\nSwedesboro\t75\nOld Hickory\t73\nVoorhees Township\t72\nSt Pete Beach\t71\nLa Vergne\t71\nRichboro\t69\nPerkasie\t69\nGranite City\t67\nSt. Albert\t67\nMt. Juliet\t66\nValley Park\t66\nGlen Carbon\t66\nSpeedway\t65\nGreen Valley\t65\nHaddon Township\t65\nFeasterville\t64\nBrookhaven\t64\nClifton Heights\t64\nJefferson\t63\nLimerick\t63\nQuakertown\t63\nWest Berlin\t63\nWhite House\t62\nLithia\t61\nFeasterville-Trevose\t60\nFlourtown\t57\nChester Springs\t56\nMullica Hill\t56\nSahuarita\t55\nSaint Ann\t55\nTerrytown\t54\nWyncote\t54\nWillingboro\t54\nSaint Pete Beach\t53\nPitman\t52\nSkippack\t52\nRunnemede\t51\nBelle Chasse\t51\nSomerdale\t51\nClaymont\t51\nLumberton\t51\nGlenolden\t51\nWestwego\t51\nHaddon Heights\t50\nLafayette Hill\t50\nHaverford\t50\nEwing Township\t49\nLahaska\t48\nBellmawr\t48\nShiloh\t47\nFort Washington\t47\nDresher\t46\nTroy\t46\nColumbia\t45\nSun City Center\t45\nSouth Pasadena\t45\nHamilton\t45\nTrevose\t44\nWaterloo\t44\nDevon\t44\nGibsonton\t44\nSwansea\t44\nBelleair Bluffs\t43\nWhitestown\t43\nHainesport\t43\nProspect Park\t42\nLindenwold\t41\nLebanon\t41\nChester\t41\nSwarthmore\t41\nOaks\t41\nThorndale\t41\nRidley Park\t40\nHolmes\t40\nOverland\t40\nColmar\t40\nGilbertsville\t40\nHigh Ridge\t40\nOaklyn\t40\nStratford\t39\nSpring City\t39\nVail\t39\nFrazer\t39\nWood River\t39\nSchwenksville\t38\nBoothwyn\t38\nWest Deptford\t38\nEssington\t37\nAshland City\t37\nMerchantville\t37\nCamby\t37\nSummerland\t37\nBridgeport\t36\nPleasant View\t36\nEvesham Township\t36\nPennsville\t36\nBeech Grove\t35\nAffton\t35\nRiver Ridge\t35\nKenneth City\t35\nAvondale\t34\nPalmyra\t34\nTown and Country\t33\nImperial\t33\nCroydon\t33\nJamison\t33\nOlivette\t33\nMorton\t32\nVirginia City\t32\nFerguson\t32\nSun Valley\t32\nWestampton\t32\nBoyertown\t32\nVillanova\t32\nMantua\t31\nWestmont\t31\nMaryville\t31\nSunset Hills\t31\nDeptford Township\t30\nNoblesville\t30\nMt Juliet\t30\nSellersville\t30\nSpring House\t30\nGloucester City\t30\nWoodlyn\t29\nCrestwood\t29\nNorth Redington Beach\t28\nVerdi\t28\nCollingdale\t28\nPennsauken Township\t28\nMagnolia\t28\nCheltenham\t28\nMt. Laurel\t27\nTelford\t27\nDover\t27\nColumbus\t27\nRedington Shores\t26\nWestville\t26\nTierra Verde\t26\nArabi\t26\nFolcroft\t25\nBarrington\t25\nLadue\t25\nRadnor\t25\nGodfrey\t25\nIndian Shores\t25\nMarcus Hook\t25\nEagleville\t25\nBuckingham\t24\nTrappe\t24\nHamilton Township\t24\nMaple Glen\t24\nPenndel\t24\nWoodbury Heights\t24\nCaseyville\t23\nCoatesville\t23\nBellevue\t22\nRock Hill\t22\nThonotosassa\t22\nHolland\t22\nSaint Albert\t22\nLawrence\t21\nJoelton\t21\nMillstadt\t21\nMcCordsville\t21\nDublin\t21\nPennsburg\t21\nPipersville\t20\nWimauma\t20\nBrooklawn\t20\nDarby\t20\nMaple Shade Township\t20\nWyndmoor\t20\nOreland\t20\nAtco\t20\nGlendora\t20\nGarnet Valley\t19\nSpanish Springs\t19\nHammonton\t19\nWoodstown\t19\nMount Ephraim\t19\nPaulsboro\t19\nMerion Station\t18\nRiverside\t18\nLaurel Springs\t18\nFrontenac\t18\nLawnside\t18\nWashington Crossing\t17\nPenns Grove\t17\nGloucester Township\t17\nChristiana\t17\nGreenbrier\t17\nKingston Springs\t16\nElmer\t16\nEast Saint Louis\t16\nWestchase\t16\nCahokia\t16\nFranklinville\t16\nPalmetto\t16\nGibbsboro\t16\nEast Alton\t15\nEvesham\t15\nSharon Hill\t15\nShrewsbury\t15\nEarth City\t15\nWhiteland\t15\nTuscon\t15\nMascoutah\t15\nMt Laurel\t15\nNorwood\t15\nWenonah\t15\nFurlong\t14\nPine Hill\t14\nHernando Beach\t14\nGreenville\t14\nTAMPA\t14\nNew Britain\t14\nWashington Township\t14\nSalem\t14\nPontoon Beach\t14\nRiverton\t14\nErdenheim\t13\nDade City\t13\nRoslyn\t13\nSan Antonio\t13\nElmwood\t13\nTreasure Is\t13\nRosemont\t13\nRockledge\t13\nBeverly\t13\nMalaga\t12\nPilesgrove\t12\nTrooper\t12\nTabernacle\t11\nShamong\t11\nEddystone\t11\nManayunk\t11\nYeadon\t11\nGibbstown\t11\nCastleton\t11\nGlenmoore\t11\nThorofare\t11\nSecane\t11\nPlumsteadville\t11\nIvyland\t11\nGreenfield\t11\nOakville\t11\nStowe\t10\nCarneys Point\t10\nSaint Rose\t10\nPrimos\t10\nGladwyne\t10\nO'fallon\t10\nKulpsville\t10\nBeaumont\t10\nWallingford\t9\nScott Air Force Base\t9\nSt.Petersburg\t9\nDanville\t9\nLawrenceville\t9\nLogan Township\t9\nSappington\t9\nLawrence Township\t9\nBerkeley\t9\nNew Palestine\t9\nSt.Louis\t9\nNewport\t9\nGreen Lane\t9\nBoise City\t9\nMonroe Township\t9\nPemberton\t9\nUpper Chichester\t9\nAldan\t9\nSauget\t8\nClarksboro\t8\nLuling\t8\nVincentown\t8\nSt. Ann\t8\nHarrison Township\t8\nJeffersonville\t8\nCatalina\t8\nEdgewater Park\t8\nBethalto\t8\nBurlington Township\t8\nMonroeville\t8\nChesterbrook\t8\nCedars\t7\nTown 'n' Country\t7\nMount Laurel Township\t7\nEastampton\t7\nPerkiomenville\t7\nTown & Country\t7\nTalleyville\t7\nWest Conshohocken\t7\nSt Louis Downtown\t7\nBreckenridge Hills\t7\nToughkenamon\t7\nFlorence\t7\nSouthport\t7\nWhites Creek\t7\nBucks\t7\nMantua Township\t7\nKimmswick\t7\nMount Lemmon\t7\nTruckee\t7\nMeraux\t6\nNewfield\t6\nKimberton\t6\nCrum Lynne\t6\nRoebling\t6\nTown And Country\t6\nPhiladephia\t6\nSmithton\t6\nBryn Athyn\t6\nFreeburg\t6\nCarrollwood\t6\nWaterford Works\t6\nWinslow Township\t6\nWoolwich Township\t6\nTUCSON\t6\nJennings\t6\nSt. Davids\t6\nLester\t6\nPennsville Township\t6\nWorcester\t5\nSaint Davids\t5\nTitusville\t5\nDelanco\t5\nMasaryktown\t5\nHolicong\t5\nHulmeville\t5\nViolet\t5\nBayonet Point\t5\nSilverdale\t5\nElsmere\t5\nMedford Lakes\t5\nSt Ann\t5\nMilmont Park\t5\nMansfield\t5\nBelleair\t5\nLinwood\t5\nBerlin Township\t5\nNASHVILLE\t5\nRedingtn Shor\t5\nPhila\t5\nScott AFB\t5\nWest Trenton\t5\nNational Park\t5\nClermont\t5\nBelle Meade\t5\nKuna\t5\nCitrus Park\t5\nNew Whiteland\t5\nDonelson\t5\nPennington\t5\nFairmont City\t4\nMehlville\t4\nBear\t4\nWest Point\t4\nBargersville\t4\nLionville\t4\nSkippack Village\t4\nEast St. Louis\t4\nPetersburg\t4\nSoutheast Edmonton\t4\nLederach\t4\nNorth Redington Bch\t4\nEast St Louis\t4\nOFallon\t4\nWrightstown\t4\nBelleair Blf\t4\nGreen Park\t4\nChurchville\t4\nConcordville\t4\nPittsgrove\t4\nMt. Ephraim\t4\nUnionville\t4\nBrooklyn\t4\nEast Lansdowne\t4\nSouthwest Philadelphia\t4\nPHILADELPHIA\t4\nMccordsville\t4\nHilltown\t4\nWarson Woods\t4\nLand O'Lakes\t4\nEnoch\t4\nChesilhurst\t4\nLine Lexington\t4\nCedar Brook\t4\nBridge City\t4\nBerry Hill\t4\nMarlborough\t4\nNormandy\t4\nOzona\t4\nZieglerville\t4\nFountainville\t4\nMt Holly\t4\nMendenhall\t4\nN Redngtn Bch\t4\nIndianpolis\t4\nTwin Oaks\t4\nWashington Park\t4\nWest Edmonton\t3\nCumberland\t3\nPinellas\t3\nAbington Township\t3\nEast Nashville\t3\nMt.Laurel\t3\nThornton\t3\nBelleair Beach\t3\nUpland\t3\nWarrington Township\t3\nSaint Bernard\t3\nSaint Peters\t3\nValley Forge\t3\nDupo\t3\nlutz\t3\nLower Gwynedd\t3\nLinfield\t3\nWashoe Valley\t3\nMarshallton\t3\nMetarie\t3\nLower Gwynedd Township\t3\nSumneytown\t3\nSouthampton Township\t3\nPHILA\t3\nEastampton Township\t3\nMont Clare\t3\nCottage Hills\t3\nMontchanin\t3\nCasas Adobes\t3\nNew Washoe City\t3\nNEW ORLEANS\t3\nFlorence Township\t3\nCorona de Tucson\t3\nWest Norriton\t3\nSt  Louis\t3\nMeadowbrook\t3\nPenn Valley\t3\nRed Hill\t3\nAndalusia\t3\nphiladelphia\t3\nMt Laurel Township\t3\nSAINT LOUIS\t3\nYbor City\t3\nBensalem Township\t3\nWillingboro Township\t3\nChestnut Hill\t3\nSaint John\t3\nSun City\t3\nTinicum Township\t3\nJobstown\t3\nSt. Rose\t3\nLima\t3\nElverson\t3\nMickleton\t3\nSanatoga\t3\nSouth Tucson\t3\nWinslow\t2\nBellefonte\t2\nPennsylvania\t2\nTrainer\t2\nBlack Jack\t2\nNashville \t2\nCorona De Tucson\t2\nCheltenham Township\t2\nSt. Peters\t2\nRadnor Township\t2\nFeasterville-trevose\t2\nLemay\t2\nGlendale\t2\nNampa\t2\nKenneth\t2\nFranconia\t2\nTerra Ceia\t2\nErial\t2\nSaint Leo\t2\nCatalina Foothills\t2\nPasco\t2\nBoone\t2\nStead\t2\nSt. Loius\t2\nGwynedd\t2\nMoorestown-Lenola\t2\nArrington\t2\nPottsgrove\t2\nMc Cordsville\t2\nCane Ridge\t2\nLARGO\t2\nChester Heights\t2\nTucson, Arizona\t2\nSanta Barbara \t2\nOldmans Township\t2\nPalm harbor\t2\nAlloway\t2\nMontgomery\t2\nMercerville\t2\nWesley chapel\t2\nRichwood\t2\nHaddon\t2\nHillsborough County\t2\nSt Pete\t2\nPass-a-Grille Beach\t2\nOaklandon\t2\nChichester\t2\nCold Springs\t2\nLANSDALE\t2\nRidley\t2\nCreve Couer\t2\nMount Royal\t2\nHopewell Township\t2\nYorklyn\t2\nWinchester\t2\nLower Merion\t2\ntampa\t2\nHartford\t2\nEarlington\t2\nRIVERVIEW\t2\nBelle Chase\t2\nWilmington Manor\t2\nBristol Twp\t2\nWilmington \t2\nSaint Louis,\t2\nIndianapolis \t2\nPinellas park\t2\nGradyville\t2\nFairview Hts.\t2\nOfallon\t2\nSaint Petersburg Beach\t2\ntucson\t2\nRose Valley\t2\nFairview Village\t2\nBirchrunville\t2\nFairview Hts\t2\nMelrose Park\t2\nSouth Tampa\t2\nBosie\t2\nPike Creek\t2\nWesttown\t2\nShady Hills\t2\nPineville\t2\nclearwater\t2\nCarversville\t2\nLavergne\t2\nMontgomery Township\t2\nSouth County\t2\nZieglersville\t2\nEdgmont\t2\nBelmont Hills\t2\nMeridan\t2\nMartinsville\t2\nWaggaman\t2\nHi-Nella\t2\nDowntown\t2\nStrafford\t2\nHaddon Twp\t2\nINDIANAPOLIS\t2\nSt Rose\t2\nPegram\t2\nLenni\t2\nEdMonton\t2\nCentreville\t2\nOldmans\t2\nPasadena\t2\nParkside\t2\nGreater Northdale\t2\nNW Edmonton\t1\nSanta Clara\t1\nMARLTON\t1\nSANTA BARBARA\t1\nLower Southampton Township\t1\nTAMPA AP\t1\nUpper Gwynedd\t1\nWest Nashville\t1\nEdmonton City Centre\t1\nAVON\t1\nSouth Cinnaminson\t1\nTampa Florida\t1\nTampa - North\t1\nDouglassville\t1\nEdgemont\t1\n​Clayton\t1\nwimauma\t1\nMechanicsville\t1\nMEDIA\t1\nBel Ridge\t1\nreno\t1\nPOTTSTOWN\t1\nNsshville\t1\nChattanooga\t1\nST. PETERSBURG\t1\nFairview\t1\nWestfield\t1\nCovington\t1\nBlvd\t1\nwilmington\t1\nReno City\t1\nPeerless Park\t1\nNew Orlaens\t1\nCreamery\t1\nRENO\t1\nMt Ephraim\t1\nLand o Lakes\t1\nSt Louis County\t1\nPine Forge\t1\nchicago\t1\nRoyersford \t1\nO' Fallon\t1\nSherwood\t1\nTampla\t1\nNEW ORLEANS AP\t1\nBuckingham Township\t1\nHampton\t1\nRADNOR\t1\nSPARKS\t1\nSt Pete beach\t1\nVirtual\t1\nNew Berlinville\t1\nNORRISTOWN\t1\nMaran\t1\nLos Angeles\t1\nAlmonesson\t1\nBensalem. Pa\t1\nNewton\t1\nCREVE COEUR\t1\nIndian Rocks Beach. \t1\nWest Bradford Township\t1\nAustin\t1\nSalinas\t1\nHamiltion\t1\nTRENTON\t1\nFeasterville Trev\t1\nReal Goleta\t1\nGoodletsville\t1\nDONELSON\t1\nmetairie\t1\nWashington Twp\t1\nWebster Grvs\t1\nClarksville\t1\nHilltop\t1\nEvshm Twp\t1\nE. Norristown\t1\nAfton\t1\nDowntown Indianapolis\t1\nEast Tampa\t1\nStaint Albert\t1\nBrooksville\t1\nMacDill AFB\t1\nWestampton Township\t1\nEast Norristown\t1\nShade\t1\nWashoe\t1\nOracle\t1\nSparks NV\t1\nCollege Place\t1\nKng Of Prusia\t1\nPhiliidelphia\t1\nLandsale\t1\nBradenton\t1\nPedricktown\t1\nBRANDON\t1\nRedingtn Shores\t1\nCherry Hill Mall\t1\nSt Petersurg\t1\nTucson \t1\nDelran Township\t1\nCerritos\t1\nW. Berlin\t1\nPhiladelphia \t1\nGloucester\t1\nClearwater/ Countryside\t1\nWILLOW GROVE\t1\nFreehold\t1\nBOISE\t1\nArizona\t1\nRiveridge\t1\nDrexel Hil\t1\nLITHIA\t1\nRosewood Heights\t1\nkop\t1\nWashington\t1\nSoutheastern\t1\nTRINITY\t1\nPine HIll\t1\nPilgrim Gardens\t1\nGrenloch\t1\nCedarbrook\t1\nLand O'lakes\t1\nBywater\t1\nNashville,\t1\nEast Boise\t1\nTarpon springs\t1\nWest Collingswood Heights\t1\nLos Ranchitos\t1\nTullytown\t1\nLargo (Walsingham)\t1\nPort Hueneme\t1\nEdmundson\t1\nSaint louis\t1\nVineland\t1\nKey Largo\t1\nSouth Reno\t1\nBellair\t1\nINpolis\t1\nNew Pt Richey\t1\nTierre Verde\t1\nHillsborough\t1\nNew castle\t1\nSullivan\t1\nTwin oaks\t1\nBlackwood \t1\nRENO AP\t1\nMississauga\t1\nLemay Ferry\t1\nNorriton\t1\nBlooming Glen\t1\nTUCSON AP\t1\nVC Highlands\t1\nWoolwich Twp.\t1\nLand o' Lakes,\t1\nRiver View\t1\nMango\t1\nCosta Mesa\t1\npennsauken\t1\nCarson City\t1\nFrederick\t1\nBeech Grove,\t1\nOxnard\t1\nOverbrook\t1\nCornwells Heights\t1\nNevada\t1\nPagedale\t1\nDrexel Heights\t1\nWayne/Radnor\t1\nBrentwood - Cool Springs\t1\nKirklyn\t1\nMerion\t1\nTren\t1\nMonrovia\t1\nWoodbury Hts.\t1\nMonchanin\t1\nCLEARWATER\t1\nSassamansville\t1\nWoodbourne\t1\nLake Saint Louis\t1\nFeastville\t1\nerdenheim\t1\nHENDERSONVILLE\t1\nBoutte\t1\nSaint Louis\t1\nDunnellon\t1\nUpper Pottsgrove\t1\nSanta Ynez\t1\nHad Twp\t1\nlargo\t1\nWest Philadelphia\t1\nClearWater\t1\nEaux Claires\t1\nLiverpool\t1\nWest Chester PA\t1\nSouthhampton\t1\nHaddon township\t1\nFallsington\t1\nCornwells Hts\t1\nValencia West\t1\nLOWER PROVIDENCE\t1\nSanta Barbra\t1\nLakeland\t1\nCarney's Point\t1\nRidley Township\t1\nNORTH WALES\t1\nBoise \t1\nTARPON SPRINGS\t1\nGlenmore\t1\nNew Jersey\t1\nST LOUIS\t1\nNewtown Township\t1\nUpper Pittsgrove\t1\nFieldsboro\t1\nSummerhaven\t1\nNorth Marlton\t1\nWesthampton\t1\nTylersport\t1\n"
+          },
+          {
+            "type": "HTML",
+            "data": "<div class=\"result-alert alert-warning\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Output is truncated</strong> to 1000 rows. Learn more about <strong>zeppelin.spark.maxResult</strong></div>\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19504"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383101272_1869319130",
+      "id": "paragraph_1710346005770_1449061315",
+      "dateCreated": "2024-03-14T10:25:01+0800",
+      "dateStarted": "2024-03-14T10:47:23+0800",
+      "dateFinished": "2024-03-14T10:48:27+0800",
+      "status": "FINISHED",
+      "$$hashKey": "object:19045"
+    },
+    {
+      "text": "%pyspark\r\nfrom pyspark.sql import HiveContext\r\n\r\n# Create a HiveContext\r\nhc = HiveContext(sc)\r\n\r\n# Execute SQL query to rank merchants based on check-in frequency\r\nmerchant_ranking = hc.sql(\"\"\"\r\n    SELECT b.name AS merchant_name, COUNT(*) AS checkin_count\r\n    FROM checkin c\r\n    JOIN business b ON c.business_id = b.business_id\r\n    GROUP BY b.name\r\n    ORDER BY checkin_count DESC\r\n\"\"\")\r\n\r\n# Show the result\r\nz.show(merchant_ranking)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T10:49:46+0800",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "merchant_name": "string",
+                      "checkin_count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "merchant_name\tcheckin_count\nStarbucks\t724\nMcDonald's\t701\nDunkin'\t505\nSubway\t453\nTaco Bell\t360\nCVS Pharmacy\t344\nWalgreens\t341\nBurger King\t334\nWendy's\t331\nWawa\t307\nDomino's Pizza\t286\nThe UPS Store\t276\nPizza Hut\t256\nEnterprise Rent-A-Car\t223\nPapa John's Pizza\t192\nGreat Clips\t179\nUS Post Office\t174\nJimmy John's\t174\nKFC\t170\nChick-fil-A\t162\nPopeyes Louisiana Kitchen\t158\nChipotle Mexican Grill\t154\nJiffy Lube\t144\nSupercuts\t135\nAT&T Store\t130\nWalmart Supercenter\t128\nThe Home Depot\t119\nPanera Bread\t117\nTarget\t117\nArby's\t115\nPlanet Fitness\t114\nSonic Drive-In\t113\nApplebee's Grill + Bar\t112\nIHOP\t112\nFirestone Complete Auto Care\t111\nSmoothie King\t111\nPanda Express\t110\nAnytime Fitness\t108\nPetSmart\t107\nWaffle House\t107\n7-Eleven\t104\nJack in the Box\t101\nLowe's Home Improvement\t99\nPublic Storage\t95\nDairy Queen\t94\nDollar Tree\t93\nBank of America Financial Center\t93\nALDI\t92\nJersey Mike's Subs\t92\nFive Guys\t92\nFedEx Office Print & Ship Center\t92\nSteak ’n Shake\t91\nT-Mobile\t91\nPep Boys\t90\nHair Cuttery\t84\nDairy Queen Grill & Chill\t82\nQuest Diagnostics\t82\nRoss Dress for Less\t82\nQDOBA Mexican Eats\t81\nDenny's\t81\nLittle Caesars Pizza\t81\nChili's\t80\nPetco\t80\nRite Aid\t78\nACME Markets\t77\nHardee's\t75\nMidas\t75\nMeineke Car Care Center\t74\nWells Fargo Bank\t74\nWalmart\t73\nKroger\t72\nRita's Italian Ice\t71\nChase Bank\t71\nVerizon\t71\nFirehouse Subs\t71\nBanfield Pet Hospital\t69\nValvoline Instant Oil Change\t68\nWingstop\t68\nLabcorp\t68\nStaples\t67\nHertz Rent A Car\t65\nMichaels\t65\nBuffalo Wild Wings\t64\nUlta Beauty\t61\nPublix Super Markets\t61\nCheckers\t60\nFirst Watch\t60\nPapa Murphy's\t59\nImo's Pizza\t59\nChina Wok\t59\nTires Plus\t59\nWhite Castle\t59\nCircle K\t58\nAdvance Auto Parts\t56\nKohl's\t56\nOutback Steakhouse\t56\nPublix\t56\nPrimoHoagies\t56\nEuropean Wax Center\t55\nMarco's Pizza\t54\nSprint Store\t54\nSaladworks\t54\nEdible Arrangements\t54\nQuikTrip\t53\nCold Stone Creamery\t53\nPhilly Pretzel Factory\t52\nChina King\t51\nMoe's Southwest Grill\t50\nBoston Market\t50\nMarshalls\t49\nCulver's\t49\nTim Hortons\t49\nLensCrafters\t49\nSally Beauty Supply\t48\nAmerica's Best Contacts & Eyeglasses\t48\nOlive Garden Italian Restaurant\t47\nBed Bath & Beyond\t47\nChurch's Chicken\t47\nHand & Stone Massage and Facial Spa\t46\nRally's\t46\nBaskin-Robbins\t45\nTire Choice Auto Service Centers\t45\nCracker Barrel Old Country Store\t45\nOffice Depot\t45\nLA Fitness\t45\nRed Lobster\t44\nTropical Smoothie Cafe\t44\nBig Lots\t43\nLongHorn Steakhouse\t43\nHungry Howie's Pizza & Subs\t43\nMacy's\t42\nOld Navy\t42\nWalmart Neighborhood Market\t42\nVictoria's Secret\t41\nO'Reilly Auto Parts\t41\nKmart\t41\nMcAlister's Deli\t41\nJet's Pizza\t40\nMen's Wearhouse\t40\nBatteries Plus Bulbs\t39\nRed Robin Gourmet Burgers and Brews\t39\nHooters\t39\nRuby Tuesday\t39\nSpeedway\t39\nParty City\t38\nAutoZone Auto Parts\t38\nDiscount Tire\t38\nGamestop\t38\nTGI Fridays\t37\nWhole Foods Market\t37\nTake 5 Oil Change\t37\nDICK'S Sporting Goods\t37\nBob Evans\t37\nMotel 6\t37\nBath & Body Works\t37\nSam's Club\t36\nExtra Space Storage\t36\nLittle Caesars\t36\nMister Car Wash\t35\nSt. Louis Bread\t34\nPainting with a Twist\t34\nAutozone\t34\nSafeway\t34\nMavis Discount Tire\t34\nEsporta Fitness\t33\nJCPenney\t33\nBoston Pizza\t33\nCarl's Jr\t33\nBeef 'O' Brady's\t33\nTrader Joe's\t33\nWinn-Dixie\t33\nWinn Dixie\t32\nUnited States Post Office\t32\nDutch Bros Coffee\t32\nCaliber Collision\t31\nNothing Bundt Cakes\t31\nFriendly's\t31\nDickey's Barbecue Pit\t30\nGoodyear Auto Service\t30\nChuck E. Cheese\t30\nThe Joint Chiropractic\t30\nZaxby's Chicken Fingers & Buffalo Wings\t30\nTJ Maxx\t30\nLong John Silver's\t30\nDSW Designer Shoe Warehouse\t29\nLeslie's\t29\nGoodwill Store\t29\nMOD Pizza\t29\nAlbertsons\t29\nCaptain D's\t29\nAutoZone\t28\nSprouts Farmers Market\t28\nAvis Rent A Car\t28\nSears\t28\nTexas Roadhouse\t28\nuBreakiFix\t28\nEinstein Bros. Bagels\t28\neegee's\t27\nManhattan Bagel\t27\nCarrabba's Italian Grill\t27\nHobby Lobby\t27\nAshley HomeStore\t27\nTire Kingdom\t27\nTD Bank\t27\nSmashburger\t27\nQuiznos\t27\nMyEyeDr\t27\nSafelite AutoGlass\t27\nChina House\t27\nForever 21\t27\nRaising Cane's Chicken Fingers\t26\nPinch A Penny Pool Patio Spa\t26\nDunkin' Donuts\t26\nO'Charley's Restaurant & Bar\t26\nSears Auto Center\t26\nNoodles & Company\t26\nVerizon Authorized Retailer - Cellular Sales\t26\nPJ's Coffee\t26\nHoney Baked Ham Company\t26\nSun Tan City\t26\nBarnes & Noble Booksellers\t25\nSpectrum\t25\nSherwin-Williams Paint Store\t25\nTijuana Flats\t25\nBonefish Grill\t25\nPlato's Closet\t25\nPenn Station East Coast Subs\t25\nPier 1\t25\nFantastic Sams Cut & Color\t25\nUSPS\t25\nShake Shack\t24\nZoes Kitchen\t24\nFazoli's\t24\nNTB - National Tire & Battery\t24\nAspen Dental\t24\nJOANN Fabrics and Crafts\t24\nPearle Vision\t24\nNew China\t24\nToys R Us\t24\nPort of Subs\t24\nGold's Gym\t24\nBlaze Pizza\t24\nKrispy Kreme\t23\nWhich Wich\t23\nWestshore Pizza\t23\nKrystal\t23\nBaskin Robbins\t23\nH&M\t23\nBurlington\t23\nPita Pit\t23\nAce Hardware\t22\nRetro Fitness\t22\nFreddy's Frozen Custard & Steakburgers\t22\nInsomnia Cookies\t22\nU.S. Bank Branch\t22\nCapriotti's Sandwich Shop\t22\nGolden Corral Buffet & Grill\t22\nGoodwill\t22\nAAMCO Transmissions & Total Car Care\t22\nTeavana\t22\nClarkson Eyecare\t21\nAuntie Anne's\t21\nFreshii\t21\nFive Below\t21\nTarget Optical\t21\nCosi\t21\nGiant Food Stores\t21\nThe Salvation Army Family Store & Donation Center\t21\nChina Garden\t21\nRegis Salon\t20\nRomano's Macaroni Grill\t20\nVerizon Authorized Retailer - GoWireless\t20\nGameStop\t20\nDonatos Pizza\t20\nPet Valu\t20\nDollar General\t20\nKung Fu Tea\t20\nBruegger's Bagels\t20\nKay Jewelers\t20\nStein Mart\t20\nPNC Bank\t20\nGNC\t20\nHarbor Freight Tools\t19\nRoyal Farms\t19\nCostco\t19\nCrew Carwash\t19\nGuitar Center\t19\nFedEx Ship Center\t19\nCar-X Tire & Auto\t19\nGiant Food Store\t19\nP.F. Chang's\t18\nSecond Cup\t18\nUrban Outfitters\t18\nFine Wine & Good Spirits - Premium Collection\t18\nSports Authority\t18\nLa-Z-Boy Furniture Galleries\t18\nDillard's\t18\nMarble Slab Creamery\t18\nMassageLuXe\t18\nVisionworks Doctors of Optometry\t18\nThorntons\t18\nSubway Restaurants\t18\nChina Star\t18\nPet Supermarket\t18\nRaymour & Flanigan Furniture and Mattress Store\t18\nShell\t18\nLee's Hoagie House\t18\nCYCLEBAR\t17\nRuth's Chris Steak House\t17\nPotbelly Sandwich Shop\t17\nDierbergs Markets\t17\nMr. Tire Auto Service Centers\t17\nBJ's Wholesale Club\t17\nNordstrom Rack\t17\nJos A Bank\t17\nPei Wei\t17\nXfinity Store by Comcast\t17\nCubeSmart Self Storage\t17\nLittle Caesar's Pizza\t16\nBest Buy\t16\nPollo Tropical\t16\nJamba Juice\t16\nRaceTrac\t16\nFantastic Sams Hair Salons\t16\nMedExpress Urgent Care\t16\nSave A Lot\t16\nAt Home\t16\nCost Cutters\t16\nPenn Station\t16\nWawa Food Markets\t16\nCarMax\t16\nEyeglass World\t16\nHomeGoods\t16\nWayback Burgers\t16\nTire Discounters\t16\nGiant\t16\nMaaco Auto Body Shop & Painting\t16\nTotal Wine & More\t16\nAnthropologie\t16\nProduce Junction\t16\nChicken Salad Chick\t16\nMonro Auto Service and Tire Centers\t16\nThe Vitamin Shoppe\t16\nHotBox Pizza\t15\nDel Taco\t15\nChina 1\t15\nMAC Cosmetics\t15\nPinkberry\t15\nNational Car Rental\t15\nAmazing Lash Studio\t15\nFloor & Decor\t15\nBig O Tires\t15\nLogan's Roadhouse\t15\nJason's Deli\t15\nSEPHORA\t15\nSuncoast Credit Union\t15\nSears Outlet\t15\nPottery Barn\t15\nShoppers Drug Mart\t15\nSocial Security\t15\nWilliams-Sonoma\t15\nA&W\t15\nSave-On-Foods\t15\nTITLE Boxing Club\t14\nRothman Orthopaedics\t14\nSephora\t14\nBanana Republic\t14\nCostco Wholesale\t14\nLife Storage\t14\nGoodwill Thrift Store and Donation Center\t14\nCoast Dental\t14\nAu Bon Pain\t14\nLes Schwab Tire Center\t14\nPerkins Restaurant & Bakery\t14\nFine Wine & Good Spirits\t14\nEinstein Bros Bagels\t14\nBrake Masters\t14\nSonny's BBQ\t14\nSky Zone Trampoline Park\t14\nLion's Choice\t14\nWorld Market\t14\nPlanet Smoothie\t14\nBRAKEmax\t14\nBayCare Urgent Care\t14\nThe Fresh Market\t14\nJared Galleria of Jewelry\t14\nJeni's Splendid Ice Creams\t14\nMetro Diner\t14\nSbarro\t14\nPure Barre\t14\nBarnes & Noble\t14\nVisionworks\t14\nBabies R Us\t13\nMeijer\t13\nTaco Bus\t13\nOnce Upon A Child\t13\nCheddar's Scratch Kitchen\t13\nSleep Number\t13\nBertucci's Italian Restaurant\t13\nGreek's Pizzeria\t13\nTuesday Morning\t13\nAlamo Rent A Car\t13\nSunoco\t13\nPublix Super Market\t13\nJohnny Rockets\t13\nJ.Crew\t13\nOfficemax\t13\nFor Eyes\t13\nSeasons Pizza\t13\nCrazy Bowls & Wraps\t13\nCicis\t13\nGoodwill Industries of Middle Tennessee\t13\nMaverik\t13\nGreyhound Bus Lines\t13\nFamous Dave's Bar-B-Que\t13\nSarku Japan\t13\nFamous Footwear\t13\nOptical Outlets\t13\nLos Betos\t13\nHibachi Grill & Supreme Buffet\t12\nSlack's Hoagie Shack\t12\nGrocery Outlet Bargain Market\t12\nOllie's Bargain Outlet\t12\nIron Hill Brewery & Restaurant\t12\nDave & Buster's\t12\nVillage Inn\t12\nTotal Access Urgent Care\t12\nDollar Tree Store\t12\nSun Country Cleaners\t12\nGerber Collision & Glass\t12\nPat's Pizzeria\t12\nNationwide Vision Centers\t12\nTorrid\t12\nThe Tile Shop\t12\nRoyal Pizza\t12\nPlay It Again Sports\t12\nDavid's Bridal\t12\nOrange Leaf Frozen Yogurt\t12\nThe Good Feet Store\t12\nEdo Japan\t12\nRadioShack\t12\nClub Pilates\t12\nThrifty Car Rental\t12\nhoneygrow\t12\nAnthony's Coal Fired Pizza\t12\nCecil Whittaker's Pizzeria\t12\nChina Moon\t12\nFatburger\t12\nLas Palmas Mexican Restaurant\t12\nH&R Block\t12\nLululemon Athletica\t12\nChevron\t12\nEnterprise Car Sales\t12\nHollywood Nails\t12\nQuality Inn & Suites\t12\nThe Melting Pot\t12\nDobbs Tire & Auto Centers\t12\nDobbs Tire And Auto Center\t12\nBuild-A-Bear Workshop\t12\nT J Maxx\t12\nSobeys\t11\nBudget Car Rental\t11\nUno Pizzeria & Grill\t11\nBravo Pizza\t11\nRodeway Inn\t11\nTower Health Urgent Care\t11\nZoup!\t11\nSouthwest Airlines\t11\nJamba\t11\nFancy Nails\t11\nNike Factory Store\t11\nCrown Fried Chicken\t11\nHungry Howie's Pizza\t11\nAldi\t11\nChina Express\t11\nTokyo Express\t11\nAngelo's Pizza\t11\nJoe's Crab Shack\t11\nAtomic Tattoos\t11\nWild Birds Unlimited\t11\nMiller's Ale House\t11\nQuality Inn\t11\nDollar Tree Stores\t11\nTutti Frutti Frozen Yogurt\t11\nPro Nails\t11\nDisney Store\t11\nTeriyaki Madness\t11\nChina One\t11\nGolf Galaxy\t11\nHappy Nails\t11\nSavers\t11\nRoto-Rooter Plumbing & Water Cleanup\t11\nTilted Kilt Pub & Eatery\t11\nBudget\t11\nMavis Tires & Brakes\t11\nAmerican Cleaners\t11\nHot Topic\t11\nWhite House Black Market\t11\nChickie's & Pete's\t11\nMarathon\t11\nBooster Juice\t11\nMission BBQ\t11\nThe Pasta House\t10\nSweet Tomatoes\t10\nRocket Fizz\t10\nLovely Nails\t10\nYats\t10\nSweat Fitness\t10\nWorld of Beer\t10\nDXL\t10\nRicky's All Day Grill\t10\nJack's Pizza\t10\nABC Fine Wine & Spirits\t10\nPeace A Pizza\t10\nBed Pros Mattress\t10\nLife Time\t10\nIn-N-Out Burger\t10\nWingHouse Bar & Grill\t10\nFinish Line\t10\nA.C. Moore Arts and Crafts\t10\nGodiva Chocolatier\t10\nAthleta\t10\nFederal Donuts\t10\nMarsh Supermarkets\t10\nNew Orleans Original Daiquiris\t10\nEcono Lodge\t10\nEl Pollo Loco\t10\nKeke's Breakfast Cafe\t10\nBaja Fresh\t10\nCalifornia Tortilla\t10\nExpress Oil Change & Tire Engineers\t10\nAnother Broken Egg Cafe\t10\nPicture People\t10\nCanadian Tire\t10\nUnited Airlines\t10\nBJ's Restaurant & Brewhouse\t10\nHelzberg Diamonds\t10\nBob’s Discount Furniture and Mattress Store\t10\nQueen Nails\t10\nWalmart Pharmacy\t10\nAmerican Airlines\t10\nPortrait Innovations\t10\nTop Nails\t10\nKirkland's\t10\nPita's Republic\t10\nCommerce Bank\t10\nClassic Cleaners\t10\nMr Wish\t10\nUPS Customer Center\t10\nFresh Thyme Market\t10\nDavid’s Bridal\t10\nGap\t10\nRestaurant Depot\t10\nA&W Restaurant\t10\nReal Canadian Superstore\t10\nREI\t10\nBellacino's Pizza & Grinders\t10\nDollar Car Rental\t10\nChina Taste\t10\nHong Kong\t10\nTractor Supply\t10\nIce Cold Air Discount Auto Repair\t10\nFat Mo's\t10\nBoscov's\t10\nFast Fix Jewelry and Watch Repairs\t10\nFirebirds Wood Fired Grill\t9\nSunrise Cafe\t9\nComcast Service Center\t9\nFleet Feet\t9\nExxon\t9\nPeter Piper Pizza\t9\nPizza 73\t9\nShell Gas Station\t9\nCookie Cutters Haircuts for Kids\t9\nColor Me Mine\t9\nJoe's Pizza\t9\nBuy Buy Baby\t9\nAcademy Sports + Outdoors\t9\nHomegoods\t9\nNaf Naf Grill\t9\nStar Nails\t9\nRoma Pizza & Pasta\t9\nTGH Urgent Care powered by Fast Track\t9\nCorner Bakery Cafe\t9\nTony Luke's\t9\nWasabi Sushi Bar\t9\nBrow Art 23\t9\nRusty's Pizza Parlor\t9\nJack's Donuts\t9\nwest elm\t9\nHoulihan's\t9\nDollarama\t9\nAlaska Airlines\t9\nWings To Go\t9\nSee's Candies\t9\nLush\t9\nBuckle\t9\nNail Spa\t9\nChina Dragon\t9\nThe Goddard School\t9\nGoodwill Store & Donation Center\t9\nHome Goods\t9\nMagic Nails\t9\nLa Hacienda\t9\nGreat Wall\t9\nCheeburger Cheeburger\t9\nGreene Street\t9\nSouthern Arizona Urgent Care\t9\nGTE Financial\t9\nFry's Food & Drug Stores\t9\nLondon Drugs\t9\nDelta Airlines\t9\nWienerschnitzel\t9\nEarl of Sandwich\t9\nMenards\t9\nThe Container Store\t9\nEarls Kitchen + Bar\t9\nMenchie's Frozen Yogurt\t9\nPayless Car Rental\t9\nBlue Coast Burrito\t9\nPoke Bros\t9\nNavy Federal Credit Union\t9\nLe Macaron French Pastries\t9\nMy Gym\t9\nConcentra Medical Center\t9\nPancheros Mexican Grill\t9\nlululemon athletica\t9\nGlory Days Grill\t9\nBurgerFi\t9\nBaggin's Gourmet Sandwiches\t9\nTaco Del Mar\t9\nVerizon Authorized Retailer, TCC\t9\nBoot Barn\t9\nFamous Tate Appliance & Bedding Center\t9\nHH Gregg\t9\nPete's Pizza\t9\nMucho Burrito\t9\nWomen's Care Florida\t9\nFrutta Bowls\t8\nJoe's Cafe\t8\nRegal Nails\t8\nChina Inn\t8\nRooms To Go\t8\nStanley Steemer\t8\nLyft\t8\nCC's Coffee House\t8\nLookAfter Hair Company\t8\nRaley's\t8\nDAVIDsTEA\t8\nTire Barn Warehouse\t8\nOld Country Buffet\t8\nCareSpot\t8\nMCL Restaurant & Bakery\t8\nSnap Kitchen\t8\nvybe urgent care\t8\nSushi Ai\t8\nJos. A. Bank\t8\nPizza King\t8\nPilot Travel Center\t8\nTj Maxx\t8\nCapital One Bank\t8\nSweet Cece's\t8\nCycle Gear\t8\nTiffany & Co\t8\nBest-One of Indy\t8\nGentle Touch Car Wash\t8\nThe Brass Tap\t8\nBud's Broiler\t8\nUber\t8\nHard Rock Cafe\t8\nTony Roma's\t8\nBig O Tire Stores\t8\nNTB-National Tire & Battery\t8\nCAVA\t8\nDoggie Style Pets\t8\nBojangles\t8\nWhataburger\t8\nIdaho Central Credit Union\t8\nWarby Parker\t8\nCherry Blow Dry Bar\t8\nPerformance Bicycle\t8\nEl Rodeo\t8\nStyle America\t8\nHarbor Freight\t8\nCSL Plasma\t8\nCalvert's Express Auto Service & Tire\t8\nGoodwill Industries\t8\nPrincess Nails\t8\nMegabus\t8\nPlaya Bowls\t8\nBruster's Real Ice Cream\t8\nCreative Nails\t8\nShoe Carnival\t8\nHot Wok\t8\nFerguson Bath, Kitchen & Lighting Gallery\t8\nTelle Tire & Auto Centers\t8\nKrispy Krunchy Chicken\t8\nNordstrom Ebar Artisan Coffee\t8\nSur La Table\t8\nRose Nails\t8\nEmpire Beauty School\t8\nSalem's Fresh Eats\t8\nCharleys Philly Steaks\t8\nYogurtland\t8\nMicrosoft Store\t8\nRed Mango\t8\nChina Kitchen\t8\nMinuteClinic\t8\nUS Airways\t8\nHalf Price Books\t8\nBluePearl Pet Hospital\t8\nThe Body Shop\t8\nNextCare Urgent Care\t8\nCafe Patachou\t8\nBinh's Nails\t8\nAvis\t8\nHong Kong Restaurant\t8\nBeauty Brands\t8\nQ Nails\t8\nFoot Locker\t8\nMasterCuts\t8\nThe Habit Burger Grill\t8\nLittle Greek Restaurant\t8\nCharleys Cheesesteaks\t8\nViva Burrito\t8\nRouses Market\t8\nRound Table Pizza\t8\nComfort Inn & Suites\t8\nAmerican Signature Furniture\t8\nTuchman Cleaners\t8\nGenghis Grill\t8\nThe Cheesecake Factory\t8\nThe Canadian Brewhouse\t8\nPapyrus\t8\nLidl\t8\nMcNatt's Cleaners\t8\nCoach\t8\nFat Jack's BBQ\t8\nBabies R US\t7\nBluemercury\t7\nOriginal Joe's Restaurant & Bar\t7\nFlying J Travel Center\t7\nNekter Juice Bar\t7\nMuscle Maker Grill\t7\n99 Cents Only Stores\t7\nSakura Japanese Restaurant\t7\nPholicious\t7\nEyes by India\t7\nParis Baguette\t7\nCrown Vision Center\t7\nKool Smiles\t7\nFuzzy's Taco Shop\t7\nSouth Beach Tanning Company\t7\nSaks OFF 5TH\t7\nMobil\t7\nVino Volo\t7\nThe Hungry Greek\t7\nReginelli's Pizzeria\t7\nOn The Border Mexican Grill & Cantina\t7\nYouFit Gyms\t7\nThe Egg & I\t7\nAmerican Apparel\t7\nLe Peep\t7\nSears Appliance Repair\t7\nMaggiano's Little Italy\t7\nAmerican Nails\t7\nState of New Jersey Motor Vehicle Comission\t7\nGoin' Postal\t7\nNoire The Nail Bar\t7\nLucky Wishbone\t7\nComfort Inn\t7\nFrench Truck Coffee\t7\nKal Tire\t7\nHibachi Express\t7\nGreat Wall Chinese Restaurant\t7\nTuffy Tire & Auto Service Center\t7\nPretty Nails\t7\nNewk's Eatery\t7\nQuality Plus Cleaners\t7\nPanda Garden\t7\nHavertys Furniture\t7\nChampion Car Wash\t7\nHunan Wok\t7\nHappy Feet Plus\t7\nBain's Deli\t7\nGaetano's\t7\nBeautiful Nails\t7\nTower Radiology\t7\nElectronic Express\t7\nRotolo's Pizzeria\t7\nWalmart Vision & Glasses\t7\nFrontier\t7\nYogo Factory\t7\nStorQuest Self Storage\t7\niFixandRepair\t7\nBelle Tire\t7\nOld Nelson Food Company\t7\nYoufit Health Clubs\t7\nPie Five Pizza\t7\nTutti Frutti\t7\nMariscos Chihuahua\t7\nFamoso Neapolitan Pizzeria\t7\nCancun Mexican Restaurant\t7\nApplebee's\t7\nValue Village\t7\nSoFresh\t7\nEl Maguey\t7\nBrothers Food Mart\t7\nSonora Quest Laboratories\t7\nModern Nails\t7\nYogurt Beach\t7\nSakura\t7\nOscar's Taco Shop\t7\nFamily Dollar\t7\nWok Box\t7\nFleming’s Prime Steakhouse & Wine Bar\t7\nNAPA Auto Parts\t7\nPanda Chinese Restaurant\t7\nMorton's The Steakhouse\t7\nTwistee Treat\t7\nWeis Markets\t7\nPottery Barn Kids\t7\nIdaho Pizza Company\t7\nThe Art of Shaving\t7\nNail Lounge\t7\nSpread Bagelry\t7\nAvalon Flooring\t7\nJerry Bob's Family Restaurant\t7\nNordstrom\t7\nBright Now! Dental & Orthodontics\t7\nLee's Famous Recipe Chicken\t7\nWinners\t7\nThe Great Frame Up\t7\nFree People\t7\nSam Ash Music Stores\t7\nBig Frog Custom T-Shirts & More\t7\nNative Grill & Wings\t7\nampm\t7\nSpasation Salon & Spa\t7\nLincoln Square Pancake House\t7\nFiesta Mexicana\t7\nSuntrust\t7\nPayless Liquors\t7\nWalmart Auto Care Centers\t7\nFuddruckers\t7\nZamzows\t7\nHelen's Hot Chicken\t7\nGoodwill Superstore\t7\nSuper Wok\t7\nSnap Fitness\t7\nDriveTime Used Cars\t7\nRegions Bank\t7\nCrown Liquors\t7\nTen Thousand Villages\t7\nValue City Furniture\t7\nDr. Tavel Family Eye Care\t7\nWillie's Chicken Shack\t7\nLighthouse Coffee\t7\nThe Halal Guys\t7\nMenchie's\t7\nZara Brow Bar\t7\nGreat American Cookies\t7\nFye\t7\nJOANN Fabrics & Crafts\t7\nSurf Style\t7\nBubbles Car Wash & Detail Centres\t7\nFantastic Sams\t7\nBest Nails\t7\nBar-B-Cutie\t7\nZales Jewelers\t7\nCity Nails\t7\nSky Nails\t7\nK&G Fashion Superstore\t7\nFred Meyer\t7\nChina Buffet\t7\nTreats Unleashed\t7\nTaste of India\t7\nBioLife Plasma Services\t6\nLA Nails\t6\nCrafty Crab\t6\nLove's Travel Stop\t6\nLaundry & Tan Connection\t6\nCJ's Tire & Automotive\t6\nFamily Video\t6\nCrate & Barrel\t6\nBuffalo Exchange\t6\nGrimaldi's Pizzeria\t6\nJack Furrier Tire & Auto Care\t6\nEinstein's Oilery\t6\nWasabi\t6\nThe Chopped Leaf\t6\nSave Mart\t6\nKing Buffet\t6\nKane's Furniture\t6\nsweetgreen\t6\nJimboy's Tacos\t6\nBally Total Fitness\t6\nClassy Nails\t6\nKahwa Coffee\t6\nKing of Pizza\t6\nFive Guys Burgers and Fries\t6\nSuper Fresh\t6\nOld Time Pottery\t6\nKendra Scott\t6\nMiss Saigon\t6\nChinese Express\t6\nPaper Source\t6\nH & M\t6\nChili's Texas Grill\t6\nCity Barbeque\t6\nSauce on the Side\t6\nZara\t6\nBuca di Beppo Italian Restaurant\t6\nLolis Mexican Cravings\t6\nMario's Pizza\t6\nThe Simple Greek\t6\nThree Dog Bakery\t6\nJade Garden\t6\nModell's Sporting Goods\t6\nFroYo Frozen Yogurt\t6\nFamous Sam's\t6\nSweet & Sassy\t6\nThe Bar Method\t6\nAuntie Anne's Pretzels\t6\nBorders Books Music & Cafe\t6\nIdaho Youth Ranch\t6\nNail Art\t6\nCalypso Cafe\t6\nNifty Fifty's\t6\nLittle Tokyo\t6\nSunglass Hut\t6\nChina Gourmet\t6\nSparkle Car Wash\t6\nNutrishop\t6\nWorld Of Beer\t6\nLearning Express Toys\t6\nLane Bryant\t6\nGoodyear Auto Service Center\t6\nThe Human Bean\t6\nEgg Roll King\t6\nEl Charro Cafe\t6\nWeekends Only Furniture & Mattress\t6\nGlamour Nails\t6\nSaxbys\t6\nThe LASIK Vision Institute\t6\nQdoba Mexican Grill\t6\nTruMark Financial Credit Union\t6\nCafe Du Monde\t6\nYard House\t6\nAmerican Eagle Outfitters\t6\nThe Coffee Bean & Tea Leaf\t6\nOff Broadway Shoes\t6\nThe Well Coffeehouse\t6\nDewey's Pizza\t6\nTaste of China\t6\nMoxie's Grill & Bar\t6\nClean Juice\t6\nRoyal Cleaners\t6\nElegant Nails\t6\nThe Old Spaghetti Factory\t6\nShop 'n Save\t6\nSkyline Chili\t6\nJake's Wayback Burgers\t6\nKiwi Frozen Yogurt\t6\nScout's Barbershop\t6\nGiordano's\t6\nFifth Third Bank\t6\nHappy Wok\t6\nGoodcents Deli Fresh Subs\t6\nPet Supplies Plus\t6\nL'Occitane en Provence\t6\nCitizens Bank\t6\nKeva Juice\t6\nTide Cleaners\t6\nCody's Original Roadhouse\t6\nImmediaDent - Urgent Dental Care\t6\nSaxbys Coffee\t6\nNatural Grocers\t6\nChuy's\t6\nPinot's Palette\t6\nBank of America\t6\nSears Appliance and Hardware Store\t6\nThai Basil\t6\nThe Vault\t6\nSwiss Chalet Rotisserie & Grill\t6\nBrooks Brothers\t6\nGolden Dragon\t6\nCapital Tacos\t6\nFlorida Medical Clinic\t6\nClub Fitness\t6\nThe Urban Juicer\t6\nPieology Pizzeria\t6\nSprint Store by Wireless Lifestyle\t6\nBlack Rock Coffee Bar\t6\nSmartStyle\t6\nSushi House\t6\nMonical's Pizza\t6\nNovaCare Rehabilitation\t6\nHappy Dragon\t6\nHook & Reel Cajun Seafood & Bar\t6\n"
+          },
+          {
+            "type": "HTML",
+            "data": "<div class=\"result-alert alert-warning\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Output is truncated</strong> to 1000 rows. Learn more about <strong>zeppelin.spark.maxResult</strong></div>\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://node-master:4040/jobs",
+              "$$hashKey": "object:19608"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710383101272_2015312531",
+      "id": "paragraph_1710346021837_1244424992",
+      "dateCreated": "2024-03-14T10:25:01+0800",
+      "dateStarted": "2024-03-14T10:48:57+0800",
+      "dateFinished": "2024-03-14T10:49:45+0800",
+      "status": "FINISHED",
+      "$$hashKey": "object:19046"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-03-14T10:48:57+0800",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1710384537539_1685900081",
+      "id": "paragraph_1710384537539_1685900081",
+      "dateCreated": "2024-03-14T10:48:57+0800",
+      "status": "READY",
+      "$$hashKey": "object:19047"
+    }
+  ],
+  "name": "Check-in Analysis",
+  "id": "2JU5HWNPC",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Check-in Analysis"
+}
