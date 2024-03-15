@@ -1,0 +1,75 @@
+  <!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="img/1.jpg" style="width:100%">
+      <div class="text">Caption Text</div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="img/2.jpg" style="width:100%">
+      <div class="text">Caption Two</div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="img/3.jpg" style="width:100%">
+      <div class="text">Caption Three</div>
+    </div>
+  
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+  </div>
+
+    </div>
+  </section>
+  <!-- //////////////////////////////////////////////////// -->
+  <section class="container-fluid">
+    <div class="container">
+
+      <div id="jquery-script-menu">
+        <div class="jquery-script-center">
+        <ul>
+        <li><a href="https://www.jqueryscript.net/slideshow/Animated-Panning-Image-Slideshow.html">Download This Plugin</a></li>
+        <li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+        </ul>
+        <div class="jquery-script-ads"><script type="text/javascript"><!--
+        google_ad_client = "ca-pub-2783044520727903";
+        /* jQuery_demo */
+        google_ad_slot = "2780937993";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script></div>
+        <div class="jquery-script-clear"></div>
+        </div>
+        </div>
+            <h1>Panning Slideshow Demo</h1>
+          <div id="window">
+        
+            <ul id="slideshow">
+              <li class="box1"><img src="https://picsum.photos/960/350?image=1020" alt="alt"/></li>
+              <li class="box2"><img src="https://picsum.photos/960/350?image=1013" alt="alt"/></li>
+              <li class="box3"><img src="https://picsum.photos/960/350?image=1004" alt="alt"/></li>
+              <li class="box4"><img src="https://picsum.photos/960/350?image=996" alt="alt"/></li>
+            </ul>
+          </div>
+          <div id="content">
+            <img src="images/titlecard.jpg" alt="Panning Slideshow with jQuery"/>
+            <p>A creative, modern jQuery slideshow plugin which automatically switches between images with a panning animation using jQuery animate() method and jQuery easing plugin.</p>
+          </div>
